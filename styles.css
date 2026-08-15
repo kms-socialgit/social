@@ -613,6 +613,13 @@ h2 {
   font-size: 0.9rem;
 }
 
+.feature-block .safety-note {
+  margin-top: 12px;
+  color: #9a3412;
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
 .muted-block {
   padding: 18px 20px;
   border-radius: 14px;
