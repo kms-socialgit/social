@@ -59,27 +59,34 @@
     </header>
 
     <main>
-      <section class="intro shell" aria-labelledby="introTitle">
+      <section class="intro top-comparison shell" aria-labelledby="introTitle">
         <div>
-          <p class="section-kicker">THREE WAYS TO GO</p>
-          <h2 id="introTitle">무엇을 가장 중요하게 볼까?</h2>
+          <p class="section-kicker">QUICK COMPARE</p>
+          <h2 id="introTitle">먼저 보는<br />케이스별 비교</h2>
+          <p class="top-comparison-note">금액은 8인 전체 기준이며 교통비는 제외했습니다.</p>
         </div>
         <div class="priority-grid">
-          <article class="priority-card">
+          <a class="priority-card priority-card-one" href="#case1">
             <span class="priority-number">01</span>
-            <h3>우리끼리 오래</h3>
-            <p>8인 전용 좌대에서 9시간 동안 편하게 낚시</p>
-          </article>
-          <article class="priority-card">
+            <strong class="priority-price">925,000원</strong>
+            <h3>좌대낚시 + 트루디</h3>
+            <p>9시간 좌대 · 8인 단독 · 낚싯대 무료</p>
+            <span class="priority-tag">친목과 긴 낚시시간</span>
+          </a>
+          <a class="priority-card priority-card-two" href="#case2">
             <span class="priority-number">02</span>
-            <h3>선상낚시와 놀이</h3>
-            <p>배낚시 후 당구·족구·탁구·노래방까지</p>
-          </article>
-          <article class="priority-card">
+            <strong class="priority-price">1,065,000원</strong>
+            <h3>선상낚시 + 트루디</h3>
+            <p>5시간 선상 · 오전/오후 선택 · 놀이시설</p>
+            <span class="priority-tag">배낚시와 좋은 숙소</span>
+          </a>
+          <a class="priority-card priority-card-three" href="#case3">
             <span class="priority-number">03</span>
-            <h3>준비 없는 가성비</h3>
-            <p>숙박·무한 바비큐·조식까지 한 번에 해결</p>
-          </article>
+            <strong class="priority-price">880,000원</strong>
+            <h3>피싱게이트 패키지</h3>
+            <p>4시간 선상 · 무한 바비큐 · 한식 조식</p>
+            <span class="priority-tag">최저 비용과 간편함</span>
+          </a>
         </div>
       </section>
 
@@ -92,7 +99,7 @@
           <p>금액은 8인 전체 기준이며 교통비는 포함하지 않았습니다.</p>
         </div>
 
-        <article class="case-card case-one" data-case="1">
+        <article class="case-card case-one" id="case1" data-case="1">
           <div class="case-topline">
             <div>
               <span class="case-label">CASE 01 · 친목형</span>
@@ -103,6 +110,18 @@
               <strong>925,000원</strong>
             </div>
           </div>
+
+          <div class="case-gallery" aria-label="케이스 1 분위기 이미지">
+            <figure>
+              <img src="./assets/images/case1-fishing.webp" alt="가을 바다 위 전용 좌대에서 친구들이 낚시하는 모습" loading="lazy" decoding="async" />
+              <figcaption><span>낚시 스타일</span><strong>8인 단독 좌대 · 여유로운 9시간</strong></figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/images/case1-stay.webp" alt="당구대와 탁구대, 바비큐 공간이 있는 펜션의 따뜻한 실내" loading="lazy" decoding="async" />
+              <figcaption><span>숙소 스타일</span><strong>놀거리 많은 트루디펜션</strong></figcaption>
+            </figure>
+          </div>
+          <p class="image-note">일정 이해를 돕기 위한 연출 이미지입니다.</p>
 
           <div class="case-body">
             <div class="timeline-panel">
@@ -161,7 +180,7 @@
           <button class="pick-button" type="button" data-pick="1">이 안을 후보로 선택</button>
         </article>
 
-        <article class="case-card case-two" data-case="2">
+        <article class="case-card case-two" id="case2" data-case="2">
           <div class="case-topline">
             <div>
               <span class="case-label">CASE 02 · 액티비티형</span>
@@ -172,6 +191,18 @@
               <strong>1,065,000원</strong>
             </div>
           </div>
+
+          <div class="case-gallery" aria-label="케이스 2 분위기 이미지">
+            <figure>
+              <img src="./assets/images/case2-fishing.webp" alt="구명조끼를 입은 친구들이 바다 위 낚싯배에서 선상낚시하는 모습" loading="lazy" decoding="async" />
+              <figcaption><span>낚시 스타일</span><strong>활동적인 5시간 선상낚시</strong></figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/images/case2-stay.webp" alt="족구장과 바비큐 테라스, 놀이공간이 마련된 펜션" loading="lazy" decoding="async" />
+              <figcaption><span>숙소 스타일</span><strong>운동과 놀이가 가능한 트루디펜션</strong></figcaption>
+            </figure>
+          </div>
+          <p class="image-note">일정 이해를 돕기 위한 연출 이미지입니다.</p>
 
           <div class="case-body">
             <div class="timeline-panel schedule-options">
@@ -218,7 +249,7 @@
           <button class="pick-button" type="button" data-pick="2">이 안을 후보로 선택</button>
         </article>
 
-        <article class="case-card case-three" data-case="3">
+        <article class="case-card case-three" id="case3" data-case="3">
           <div class="case-topline">
             <div>
               <span class="case-label">CASE 03 · 가성비형</span>
@@ -229,6 +260,18 @@
               <strong>880,000원</strong>
             </div>
           </div>
+
+          <div class="case-gallery" aria-label="케이스 3 분위기 이미지">
+            <figure>
+              <img src="./assets/images/case3-fishing.webp" alt="태안 해안 가까이에서 친구들이 편하게 반일 선상낚시하는 모습" loading="lazy" decoding="async" />
+              <figcaption><span>낚시 스타일</span><strong>부담 적은 4시간 패키지 선상낚시</strong></figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/images/case3-stay.webp" alt="수영장과 갯벌 전망, 무한 바비큐 공간이 있는 해안 펜션" loading="lazy" decoding="async" />
+              <figcaption><span>숙소 스타일</span><strong>수영장·갯벌·무한 바비큐 패키지</strong></figcaption>
+            </figure>
+          </div>
+          <p class="image-note">일정 이해를 돕기 위한 연출 이미지입니다.</p>
 
           <div class="case-body">
             <div class="timeline-panel schedule-options">
