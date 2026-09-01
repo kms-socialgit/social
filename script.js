@@ -15,7 +15,7 @@ function showToast(message) {
 shareButton.addEventListener("click", async () => {
   const shareData = {
     title: document.title,
-    text: "2026 태안 계모임 좌대낚시·트루디펜션 확정 일정",
+    text: "2026 태안 계모임 당암리 독립좌대·트루디펜션 일정",
     url: window.location.href,
   };
 
