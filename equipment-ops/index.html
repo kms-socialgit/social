@@ -1,0 +1,2462 @@
+<!doctype html>
+<html lang="ko" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>설비 통합 관제 · 화면 시안</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="설비 통합 관제 · 화면 시안" data-srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;ko&quot; data-visualize-standalone&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;설비 통합 관제 · 화면 시안&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 10px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+:root:not([data-app-block-surface], [data-visualize-standalone]) &gt; body {
+  padding: 12px;
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* The shared runtime owns data-tooltip; suppress AppBlock&#x27;s pseudo-tooltip. */
+main [data-tooltip]::after {
+  content: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn,
+.nav-link {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover,
+.nav-link:not(:disabled):not([aria-disabled=&quot;true&quot;]):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled=&quot;true&quot;] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;codex-visualization-widget-state&quot;&gt;__CODEX_VISUALIZATION_WIDGET_STATE__&lt;/script&gt;
+&lt;script&gt;(() =&gt; {
+  const root = document.documentElement;
+  const mediaQuery = globalThis.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
+  const apply = Reflect.apply;
+  const isArray = Array.isArray;
+  const hasOwn = Object.hasOwn;
+  const parentWindow = globalThis.parent;
+  const stringify = JSON.stringify;
+  const parse = JSON.parse;
+  const encode = TextEncoder.prototype.encode.bind(new TextEncoder());
+  const initialStateElement = document.getElementById(
+    &quot;codex-visualization-widget-state&quot;,
+  );
+  const initialGlobals = parse(initialStateElement?.textContent ?? &quot;{}&quot;);
+  initialStateElement?.remove();
+  /** @type {Record&lt;string, unknown&gt; | null} */
+  let state = initialGlobals.widgetState ?? null;
+  const statePersistence = initialGlobals.statePersistence ?? &quot;none&quot;;
+  let nextStateRequestId = 0;
+  /** @type {Map&lt;number, { resolve: () =&gt; void; reject: (error: Error) =&gt; void; timeout: ReturnType&lt;typeof globalThis.setTimeout&gt;; serializedState: string }&gt;} */
+  const pendingStateWrites = new Map();
+  const persistenceError = () =&gt;
+    Object.assign(
+      new Error(&quot;The host could not persist the widget state update&quot;),
+      {
+        code: -32000,
+        data: { code: &quot;widget_state_persistence_failed&quot;, retryable: false },
+      },
+    );
+  /**
+   * @param {object} prototype
+   * @param {string} property
+   */
+  const getPrototypeGetter = (prototype, property) =&gt; {
+    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
+    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
+    if (getter == null) {
+      throw new Error(`Missing ${property} getter`);
+    }
+    return getter;
+  };
+  const getMessageData = getPrototypeGetter(MessageEvent.prototype, &quot;data&quot;);
+  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, &quot;ports&quot;);
+  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, &quot;source&quot;);
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const addHostMessageListener = MessagePort.prototype.addEventListener;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const postHostMessage = MessagePort.prototype.postMessage;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const startHostPort = MessagePort.prototype.start;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
+  /** @type {MessagePort | null} */
+  let hostPort = null;
+  const postToHost = (type, payload) =&gt; {
+    if (hostPort != null) {
+      apply(postHostMessage, hostPort, [{ type, ...payload }]);
+    }
+  };
+  const openExternal = ({ href }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;open-external&quot;, { href });
+    }
+  };
+  const sendFollowUpMessage = ({ context, prompt, title }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;follow-up&quot;, { context, prompt, title });
+    }
+    return Promise.resolve();
+  };
+  /**
+   * @param {Record&lt;string, unknown&gt; | ((previous: Record&lt;string, unknown&gt; | null) =&gt; Record&lt;string, unknown&gt;)} next
+   * @returns {Promise&lt;void&gt;}
+   */
+  const setWidgetState = async (next) =&gt; {
+    const nextState = typeof next === &quot;function&quot; ? next(state) : next;
+    if (
+      nextState == null ||
+      typeof nextState !== &quot;object&quot; ||
+      isArray(nextState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const inputState = stringify(
+      nextState,
+      (_key, /** @type {unknown} */ value) =&gt; {
+        if (
+          typeof value === &quot;undefined&quot; ||
+          typeof value === &quot;function&quot; ||
+          typeof value === &quot;symbol&quot; ||
+          (typeof value === &quot;number&quot; &amp;&amp; !Number.isFinite(value))
+        ) {
+          throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+        }
+        return value;
+      },
+    );
+    const parsedState = parse(inputState);
+    if (
+      parsedState == null ||
+      typeof parsedState !== &quot;object&quot; ||
+      isArray(parsedState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const storedState = {
+      modelContent: null,
+      privateContent: null,
+      ...parsedState,
+    };
+    const serializedState = stringify(storedState);
+    if (encode(serializedState).length &gt; 16 * 1024) {
+      throw new TypeError(
+        &quot;Widget state must be a JSON object of at most 16 KiB&quot;,
+      );
+    }
+    if (
+      hasOwn(storedState, &quot;imageIds&quot;) &amp;&amp;
+      (!isArray(storedState.imageIds) ||
+        storedState.imageIds.some(
+          (/** @type {unknown} */ id) =&gt; typeof id !== &quot;string&quot;,
+        ))
+    ) {
+      throw new TypeError(&quot;Widget state imageIds must be an array of strings&quot;);
+    }
+    if (storedState.imageIds?.length &gt; 0) {
+      throw Object.assign(
+        new TypeError(&quot;Visualization state does not support image attachments&quot;),
+        { code: -32602, data: { code: &quot;images_unsupported&quot; } },
+      );
+    }
+    state = storedState;
+    globalThis.openai.widgetState = state;
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: { widgetState: state } },
+      }),
+    );
+    if (statePersistence === &quot;none&quot;) {
+      throw persistenceError();
+    }
+    const id = ++nextStateRequestId;
+    return new Promise((resolve, reject) =&gt; {
+      const timeout = globalThis.setTimeout(() =&gt; {
+        pendingStateWrites.delete(id);
+        reject(persistenceError());
+      }, 30_000);
+      pendingStateWrites.set(id, { resolve, reject, timeout, serializedState });
+      postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+    });
+  };
+  const syncTheme = () =&gt; {
+    const theme = mediaQuery.matches ? &quot;dark&quot; : &quot;light&quot;;
+    root.dataset.theme = theme;
+    globalThis.openai = {
+      ...globalThis.openai,
+      openExternal,
+      sendFollowUpMessage,
+      setWidgetState,
+      theme,
+      visualizationStyleVariables: {},
+      visualizationTheme: theme,
+      widgetState: state,
+      statePersistence,
+      stateModelContext: &quot;none&quot;,
+    };
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: globalThis.openai },
+      }),
+    );
+  };
+  const sendHeight = () =&gt; {
+    postToHost(&quot;height&quot;, {
+      height: Math.ceil(
+        Math.max(
+          document.body.scrollHeight,
+          document.body.getBoundingClientRect().height,
+        ),
+      ),
+    });
+  };
+
+  globalThis.addEventListener(
+    &quot;message&quot;,
+    (event) =&gt; {
+      const data = apply(getMessageData, event, []);
+      const ports = apply(getMessagePorts, event, []);
+      const source = apply(getMessageSource, event, []);
+      if (
+        hostPort != null ||
+        source !== parentWindow ||
+        typeof data !== &quot;object&quot; ||
+        data?.type !== &quot;codex-visualization-initialize&quot; ||
+        !isArray(ports) ||
+        ports.length !== 1
+      ) {
+        return;
+      }
+      apply(stopMessagePropagation, event, []);
+      const nextHostPort = ports[0];
+      try {
+        apply(addHostMessageListener, nextHostPort, [
+          &quot;message&quot;,
+          (event) =&gt; {
+            const data = apply(getMessageData, event, []);
+            if (typeof data === &quot;object&quot; &amp;&amp; data?.type === &quot;measure&quot;) {
+              sendHeight();
+            } else if (
+              typeof data === &quot;object&quot; &amp;&amp;
+              data?.type === &quot;widget-state-result&quot;
+            ) {
+              /** @type {unknown} */
+              const id = data.id;
+              if (typeof id !== &quot;number&quot;) {
+                return;
+              }
+              const pending = pendingStateWrites.get(id);
+              if (pending != null) {
+                pendingStateWrites.delete(id);
+                globalThis.clearTimeout(pending.timeout);
+                if (data.ok === true) {
+                  pending.resolve();
+                } else {
+                  pending.reject(persistenceError());
+                }
+              }
+            }
+          },
+        ]);
+        apply(startHostPort, nextHostPort, []);
+      } catch {
+        return;
+      }
+      hostPort = nextHostPort;
+      for (const [id, { serializedState }] of pendingStateWrites) {
+        postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+      }
+      sendHeight();
+    },
+    { capture: true },
+  );
+  document.currentScript?.remove();
+  mediaQuery.addEventListener(&quot;change&quot;, syncTheme);
+  globalThis.addEventListener(&quot;click&quot;, (event) =&gt; {
+    if (event.defaultPrevented) {
+      return;
+    }
+    let element = null;
+    if (event.target instanceof globalThis.Element) {
+      element = event.target;
+    } else if (event.target instanceof globalThis.Node) {
+      element = event.target.parentElement;
+    }
+    const link = element?.closest(&quot;a[href]&quot;);
+    const href = link?.getAttribute(&quot;href&quot;);
+    if (href == null) {
+      return;
+    }
+    if (href.startsWith(&quot;#&quot;)) {
+      let id;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const target = id.length === 0 ? root : document.getElementById(id);
+      if (
+        target == null ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      event.preventDefault();
+      postToHost(&quot;scroll-to&quot;, {
+        top: target.getBoundingClientRect().top + globalThis.scrollY,
+      });
+      return;
+    }
+    event.preventDefault();
+    openExternal({ href });
+  });
+  new ResizeObserver(sendHeight).observe(document.body);
+  syncTheme();
+})();
+&lt;/script&gt;
+&lt;div id=&quot;equipment-ops-preview&quot;&gt;
+  &lt;div class=&quot;ops-window&quot;&gt;
+    &lt;header class=&quot;ops-topbar&quot;&gt;
+      &lt;div class=&quot;ops-brand&quot;&gt;&lt;span class=&quot;ops-mark&quot;&gt;&lt;i data-lucide=&quot;panels-top-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;div&gt;&lt;strong&gt;설비 통합 관제&lt;/strong&gt;&lt;span&gt;Equipment Operations&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;ops-preview-label&quot;&gt;&lt;span&gt;&lt;/span&gt;화면 시안 · 예시 데이터&lt;/div&gt;
+      &lt;div class=&quot;ops-profile&quot;&gt;&lt;span class=&quot;ops-avatar&quot;&gt;민&lt;/span&gt;&lt;div&gt;&lt;strong&gt;김민수 &lt;span class=&quot;ops-role&quot;&gt;admin&lt;/span&gt;&lt;/strong&gt;&lt;span&gt;LINE-A · DIFF · 설비기술팀&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;ops-navigation&quot;&gt;
+      &lt;nav class=&quot;ops-pages&quot; aria-label=&quot;업무 메뉴&quot;&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;rollout&quot; class=&quot;ops-nav is-active&quot;&gt;&lt;i data-lucide=&quot;layout-dashboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;횡전개&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;calendar&quot; class=&quot;ops-nav&quot;&gt;&lt;i data-lucide=&quot;calendar-days&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;작업 캘린더&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;parts&quot; class=&quot;ops-nav&quot;&gt;&lt;i data-lucide=&quot;package&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;부품 현황&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;sop&quot; class=&quot;ops-nav&quot;&gt;&lt;i data-lucide=&quot;files&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;SOP 모음&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;approvals&quot; class=&quot;ops-nav&quot;&gt;&lt;i data-lucide=&quot;inbox&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;결재함 &lt;span data-approval-count class=&quot;ops-count&quot;&gt;(3)&lt;/span&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;permission&quot; class=&quot;ops-nav&quot;&gt;&lt;i data-lucide=&quot;user-round-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;권한 신청&lt;/button&gt;
+      &lt;/nav&gt;
+      &lt;div class=&quot;ops-utilities&quot;&gt;
+        &lt;button type=&quot;button&quot; data-dock=&quot;chat&quot; class=&quot;ops-utility&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;ops-dock&quot;&gt;&lt;i data-lucide=&quot;messages-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;채팅 &lt;span data-chat-count class=&quot;ops-count&quot;&gt;(2)&lt;/span&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-dock=&quot;ai&quot; class=&quot;ops-utility&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;ops-dock&quot;&gt;&lt;i data-lucide=&quot;sparkles&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;AI&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ops-workarea&quot;&gt;
+      &lt;main id=&quot;ops-main&quot; class=&quot;ops-main&quot; aria-label=&quot;업무 화면&quot;&gt;&lt;/main&gt;
+      &lt;aside id=&quot;ops-dock&quot; class=&quot;ops-dock&quot; aria-label=&quot;대화 패널&quot; hidden&gt;&lt;/aside&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;ops-modal&quot; class=&quot;ops-modal&quot; hidden&gt;&lt;/div&gt;
+    &lt;div id=&quot;ops-toast&quot; class=&quot;ops-toast&quot; role=&quot;status&quot; hidden&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+#equipment-ops-preview{
+ --ops-ground:light-dark(#f3f5f9,#121823);--ops-surface:light-dark(#ffffff,#1b2330);--ops-soft:light-dark(#f7f9fc,#222c3a);--ops-ink:light-dark(#182941,#e5eaf2);--ops-muted:light-dark(#65748a,#a9b7ca);--ops-line:light-dark(#e2e8f0,#354152);--ops-blue:light-dark(#2b5fe5,#88adff);--ops-blue-soft:light-dark(#edf3ff,#263c60);--ops-green:light-dark(#187952,#81d3b0);--ops-green-soft:light-dark(#ebf7f0,#203d35);--ops-amber:light-dark(#996410,#ecc17d);--ops-amber-soft:light-dark(#fff5df,#463a23);--ops-red:light-dark(#b74b43,#f5a198);--ops-red-soft:light-dark(#fcefed,#472b2d);--ops-purple:light-dark(#7860b3,#beabed);--ops-purple-soft:light-dark(#f3effb,#382f4d);--ops-on-blue:light-dark(#fff,#14223a);--ops-shadow:light-dark(#16325b18,#00000040);
+ color:var(--ops-ink);font-family:Inter,&quot;Pretendard&quot;,&quot;Noto Sans KR&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;font-size:14px;line-height:1.5;width:100%;background:transparent;
+}
+#equipment-ops-preview *{box-sizing:border-box}
+#equipment-ops-preview [hidden]{display:none!important}
+#equipment-ops-preview button,#equipment-ops-preview input,#equipment-ops-preview select,#equipment-ops-preview textarea{font:inherit;color:inherit}
+#equipment-ops-preview button{cursor:pointer}
+#equipment-ops-preview button:disabled{cursor:default;opacity:.5}
+#equipment-ops-preview button:focus-visible,#equipment-ops-preview input:focus-visible,#equipment-ops-preview select:focus-visible,#equipment-ops-preview textarea:focus-visible{outline:2px solid var(--ops-blue);outline-offset:3px}
+#equipment-ops-preview button svg,#equipment-ops-preview i[data-lucide]{width:16px;height:16px;flex-shrink:0}
+#equipment-ops-preview h1,#equipment-ops-preview h2,#equipment-ops-preview h3,#equipment-ops-preview p{margin:0}
+#equipment-ops-preview strong,#equipment-ops-preview h1,#equipment-ops-preview h2,#equipment-ops-preview h3{font-weight:600}
+#equipment-ops-preview .ops-window{position:relative;overflow:hidden;border:1px solid var(--ops-line);border-radius:14px;background:var(--ops-ground)}
+#equipment-ops-preview .ops-topbar{display:flex;align-items:center;gap:22px;padding:20px 24px;background:var(--ops-surface);flex-wrap:wrap}
+#equipment-ops-preview .ops-brand{display:flex;align-items:center;gap:11px;margin-right:auto}
+#equipment-ops-preview .ops-mark{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--ops-blue);color:var(--ops-on-blue)}
+#equipment-ops-preview .ops-mark svg{width:21px;height:21px}
+#equipment-ops-preview .ops-brand strong{display:block;font-size:18px;letter-spacing:-.6px}
+#equipment-ops-preview .ops-brand div&gt;span{display:block;font-size:11px;letter-spacing:1px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-preview-label{font-size:11px;color:var(--ops-muted);display:flex;align-items:center;gap:6px}
+#equipment-ops-preview .ops-preview-label&gt;span{width:6px;height:6px;background:var(--ops-amber);border-radius:50%}
+#equipment-ops-preview .ops-profile{display:flex;align-items:center;gap:9px;font-size:12px}
+#equipment-ops-preview .ops-profile strong{display:block}
+#equipment-ops-preview .ops-profile div&gt;span{font-size:11px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-avatar{display:inline-grid;place-items:center;background:var(--ops-blue-soft);color:var(--ops-blue);width:34px;height:34px;border-radius:50%;font-size:13px;font-weight:600;flex-shrink:0}
+#equipment-ops-preview .ops-role{margin-left:4px;background:var(--ops-soft);border:1px solid var(--ops-line);padding:1px 5px;border-radius:4px;color:var(--ops-muted);font-size:11px}
+#equipment-ops-preview .ops-navigation{display:flex;align-items:stretch;padding:0 16px;gap:12px;border-top:1px solid var(--ops-line);border-bottom:1px solid var(--ops-line);background:var(--ops-surface);flex-wrap:wrap}
+#equipment-ops-preview .ops-pages{display:flex;gap:2px;flex:1;flex-wrap:wrap}
+#equipment-ops-preview .ops-nav{display:flex;align-items:center;justify-content:center;gap:6px;border:0;border-bottom:2px solid transparent;background:transparent;min-height:52px;padding:0 10px;color:var(--ops-muted);font-size:12px;white-space:nowrap}
+#equipment-ops-preview .ops-nav:hover,#equipment-ops-preview .ops-utility:hover{background:var(--ops-soft);color:var(--ops-ink)}
+#equipment-ops-preview .ops-nav.is-active{border-bottom-color:var(--ops-blue);color:var(--ops-blue);font-weight:600}
+#equipment-ops-preview .ops-utilities{display:flex;align-items:center;gap:5px}
+#equipment-ops-preview .ops-utility{display:flex;align-items:center;gap:6px;min-height:34px;padding:6px 9px;border:1px solid var(--ops-line);border-radius:7px;background:var(--ops-surface);font-size:12px;white-space:nowrap}
+#equipment-ops-preview .ops-utility.is-active{background:var(--ops-blue-soft);border-color:var(--ops-blue);color:var(--ops-blue)}
+#equipment-ops-preview .ops-count{color:var(--ops-blue);font-size:11px;font-weight:600}
+#equipment-ops-preview .ops-workarea{display:flex;align-items:stretch;min-height:760px}
+#equipment-ops-preview .ops-main{flex:1;min-width:0;padding:24px;container-type:inline-size;container-name:ops-content}
+#equipment-ops-preview .ops-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+#equipment-ops-preview .ops-eyebrow{font-size:11px;letter-spacing:.5px;color:var(--ops-muted);margin-bottom:5px}
+#equipment-ops-preview h1{font-size:23px;line-height:1.35;letter-spacing:-.8px}
+#equipment-ops-preview .ops-subtitle{color:var(--ops-muted);font-size:12px;margin-top:6px}
+#equipment-ops-preview .ops-action{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;border:1px solid var(--ops-line);border-radius:7px;padding:7px 11px;background:var(--ops-surface);font-size:12px;white-space:nowrap}
+#equipment-ops-preview .ops-action:hover{background:var(--ops-soft)}
+#equipment-ops-preview .ops-action-primary{background:var(--ops-blue);border-color:var(--ops-blue);color:var(--ops-on-blue)}
+#equipment-ops-preview .ops-action-primary:hover{filter:brightness(.95);background:var(--ops-blue)}
+#equipment-ops-preview .ops-action-soft{background:var(--ops-blue-soft);color:var(--ops-blue);border-color:transparent}
+#equipment-ops-preview .ops-icon-action{padding:7px;min-width:34px;min-height:34px;display:inline-grid;place-items:center;background:transparent;border:0;border-radius:6px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-icon-action:hover{background:var(--ops-soft);color:var(--ops-blue)}
+#equipment-ops-preview .ops-filterbar{display:flex;align-items:center;gap:9px;padding:11px 13px;background:var(--ops-surface);border:1px solid var(--ops-line);border-radius:9px;flex-wrap:wrap;margin-bottom:18px}
+#equipment-ops-preview .ops-filter-caption{font-size:11px;color:var(--ops-muted);display:flex;align-items:center;gap:5px;margin-right:5px}
+#equipment-ops-preview .ops-select,#equipment-ops-preview .ops-input,#equipment-ops-preview .ops-textarea{background:var(--ops-surface);border:1px solid var(--ops-line);border-radius:6px;padding:8px 10px;min-height:36px;min-width:0;font-size:12px;max-width:100%}
+#equipment-ops-preview .ops-select{padding-right:26px}
+#equipment-ops-preview .ops-filterbar .ops-input{flex:1;min-width:130px}
+#equipment-ops-preview .ops-scope-note{font-size:11px;color:var(--ops-muted);margin-left:auto;white-space:nowrap}
+#equipment-ops-preview .ops-surface{border:1px solid var(--ops-line);border-radius:10px;background:var(--ops-surface);overflow:hidden}
+#equipment-ops-preview .ops-section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:17px 18px;border-bottom:1px solid var(--ops-line)}
+#equipment-ops-preview .ops-section-head h2{font-size:14px;letter-spacing:-.2px}
+#equipment-ops-preview .ops-note{color:var(--ops-muted);font-size:11px}
+#equipment-ops-preview .ops-flex{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#equipment-ops-preview .ops-spread{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#equipment-ops-preview .ops-project-tabs{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
+#equipment-ops-preview .ops-project-tab{padding:9px 13px;border:1px solid var(--ops-line);border-radius:7px;background:var(--ops-surface);color:var(--ops-muted);font-size:12px;display:flex;gap:8px;align-items:center;text-align:left}
+#equipment-ops-preview .ops-project-tab.is-active{color:var(--ops-blue);border-color:var(--ops-blue);background:var(--ops-blue-soft)}
+#equipment-ops-preview .ops-type{font-size:11px;font-weight:600;letter-spacing:.5px;border-radius:4px;padding:2px 5px;background:var(--ops-soft);color:var(--ops-muted)}
+#equipment-ops-preview .ops-project-tab.is-active .ops-type{background:var(--ops-blue);color:var(--ops-on-blue)}
+#equipment-ops-preview .ops-project{display:grid;grid-template-columns:185px 1fr;gap:22px;padding:20px;align-items:center}
+#equipment-ops-preview .ops-photo{height:122px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px;border-radius:7px;background:var(--ops-soft);border:1px dashed var(--ops-line);color:var(--ops-muted);font-size:11px}
+#equipment-ops-preview .ops-photo svg{width:29px;height:29px;opacity:.7}
+#equipment-ops-preview .ops-photo-footer{font-size:11px;color:var(--ops-muted);text-align:center;margin-top:7px}
+#equipment-ops-preview .ops-project h2{font-size:19px;letter-spacing:-.6px;margin:8px 0}
+#equipment-ops-preview .ops-project p{font-size:12px;color:var(--ops-muted);line-height:1.7}
+#equipment-ops-preview .ops-project .ops-flex{margin-top:12px}
+#equipment-ops-preview .ops-file-chip{display:inline-flex;gap:5px;align-items:center;padding:5px 7px;border:1px solid var(--ops-line);border-radius:5px;color:var(--ops-muted);background:var(--ops-surface);font-size:11px;max-width:100%;overflow-wrap:anywhere;text-align:left}
+#equipment-ops-preview .ops-status{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:5px;font-size:11px;white-space:nowrap;color:var(--ops-muted);background:var(--ops-soft);font-weight:500}
+#equipment-ops-preview .ops-status.blue{color:var(--ops-blue);background:var(--ops-blue-soft)}
+#equipment-ops-preview .ops-status.green{color:var(--ops-green);background:var(--ops-green-soft)}
+#equipment-ops-preview .ops-status.amber{color:var(--ops-amber);background:var(--ops-amber-soft)}
+#equipment-ops-preview .ops-status.red{color:var(--ops-red);background:var(--ops-red-soft)}
+#equipment-ops-preview .ops-status.purple{color:var(--ops-purple);background:var(--ops-purple-soft)}
+#equipment-ops-preview .ops-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+#equipment-ops-preview .ops-kpi{padding:16px 18px;background:var(--ops-surface);border:1px solid var(--ops-line);border-radius:9px}
+#equipment-ops-preview .ops-kpi-label{font-size:12px;color:var(--ops-muted);display:flex;align-items:center;justify-content:space-between;gap:5px}
+#equipment-ops-preview .ops-kpi-value{display:flex;align-items:baseline;gap:5px;margin-top:8px;font-size:28px;line-height:1.2;font-weight:600;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+#equipment-ops-preview .ops-kpi-value span{font-size:12px;letter-spacing:0;font-weight:400;color:var(--ops-muted)}
+#equipment-ops-preview .ops-kpi-foot{margin-top:8px;font-size:11px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-kpi-highlight{border-top:2px solid var(--ops-blue)}
+#equipment-ops-preview .ops-two-columns{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;margin-bottom:16px}
+#equipment-ops-preview .ops-line-progress{display:grid;grid-template-columns:62px 1fr 64px;align-items:center;gap:13px;padding:12px 18px;font-size:12px}
+#equipment-ops-preview .ops-meter{height:7px;overflow:hidden;border-radius:6px;background:var(--ops-soft)}
+#equipment-ops-preview .ops-meter&gt;span{height:100%;background:var(--ops-blue);display:block;border-radius:6px}
+#equipment-ops-preview .ops-line-progress strong{text-align:right;font-size:12px;font-variant-numeric:tabular-nums}
+#equipment-ops-preview .ops-line-progress small{display:block;color:var(--ops-muted);font-size:11px;font-weight:400}
+#equipment-ops-preview .ops-attention-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 18px;border-bottom:1px solid var(--ops-line)}
+#equipment-ops-preview .ops-attention-row:last-child{border:0}
+#equipment-ops-preview .ops-attention-row strong{font-size:12px;display:block}
+#equipment-ops-preview .ops-attention-row p{font-size:11px;color:var(--ops-muted);margin-top:2px}
+#equipment-ops-preview .ops-table-wrap{overflow-x:auto}
+#equipment-ops-preview .ops-table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}
+#equipment-ops-preview .ops-table th{padding:11px 14px;background:var(--ops-soft);color:var(--ops-muted);font-size:11px;font-weight:500;white-space:nowrap}
+#equipment-ops-preview .ops-table td{padding:12px 14px;border-top:1px solid var(--ops-line);white-space:nowrap;vertical-align:middle}
+#equipment-ops-preview .ops-table .ops-check{text-align:center;color:var(--ops-green)}
+#equipment-ops-preview .ops-table td.ops-check svg{width:15px;height:15px;vertical-align:middle}
+#equipment-ops-preview .ops-table small{display:block;color:var(--ops-muted);font-size:11px;margin-top:2px}
+#equipment-ops-preview .ops-table tbody tr:hover{background:var(--ops-soft)}
+#equipment-ops-preview .ops-table .ops-wrap-cell{white-space:normal;min-width:170px}
+#equipment-ops-preview .ops-table-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px;border-top:1px solid var(--ops-line);font-size:11px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-pagination{display:flex;gap:4px}
+#equipment-ops-preview .ops-pagination button{background:transparent;border:0;min-width:28px;min-height:28px;border-radius:5px;font-size:11px}
+#equipment-ops-preview .ops-pagination button.is-active{background:var(--ops-blue-soft);color:var(--ops-blue)}
+#equipment-ops-preview .ops-empty{text-align:center;padding:38px 18px;color:var(--ops-muted);font-size:12px}
+#equipment-ops-preview .ops-tabs{display:flex;gap:3px;background:var(--ops-soft);padding:3px;border-radius:7px;width:fit-content;max-width:100%;flex-wrap:wrap}
+#equipment-ops-preview .ops-tabs button{border:0;border-radius:5px;background:transparent;font-size:12px;padding:6px 12px;min-height:31px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-tabs button.is-active{background:var(--ops-surface);box-shadow:0 1px 4px var(--ops-shadow);color:var(--ops-ink);font-weight:600}
+#equipment-ops-preview .ops-calendar-toolbar{padding:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#equipment-ops-preview .ops-calendar-toolbar h2{font-size:17px;letter-spacing:-.4px}
+#equipment-ops-preview .ops-weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--ops-line);background:var(--ops-soft)}
+#equipment-ops-preview .ops-weekdays&gt;div{padding:8px;text-align:center;color:var(--ops-muted);font-size:11px}
+#equipment-ops-preview .ops-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+#equipment-ops-preview .ops-day{min-height:91px;padding:7px 5px;border-right:1px solid var(--ops-line);border-top:1px solid var(--ops-line);min-width:0}
+#equipment-ops-preview .ops-day:nth-child(7n){border-right:0}
+#equipment-ops-preview .ops-day.ops-out-month{background:var(--ops-soft);color:var(--ops-muted)}
+#equipment-ops-preview .ops-date-button{font-size:11px;min-width:24px;min-height:24px;display:inline-grid;place-items:center;border:0;background:transparent;border-radius:50%;padding:0}
+#equipment-ops-preview .ops-day.ops-today .ops-date-button{background:var(--ops-blue);color:var(--ops-on-blue)}
+#equipment-ops-preview .ops-holiday{font-size:11px;color:var(--ops-red);overflow-wrap:anywhere;line-height:1.2}
+#equipment-ops-preview .ops-sunday{color:var(--ops-red)!important}
+#equipment-ops-preview .ops-calendar-event{display:block;width:100%;text-align:left;margin-top:4px;padding:4px 5px;border:0;border-left:2px solid var(--ops-blue);border-radius:3px;background:var(--ops-blue-soft);font-size:11px;line-height:1.4;overflow-wrap:anywhere;color:var(--ops-blue)}
+#equipment-ops-preview .ops-calendar-event.pending{background:var(--ops-amber-soft);color:var(--ops-amber);border-left-color:var(--ops-amber)}
+#equipment-ops-preview .ops-calendar-event.bm{background:var(--ops-red-soft);color:var(--ops-red);border-left-color:var(--ops-red)}
+#equipment-ops-preview .ops-calendar-event.improvement{background:var(--ops-purple-soft);color:var(--ops-purple);border-left-color:var(--ops-purple)}
+#equipment-ops-preview .ops-calendar-event.uncounted{background:var(--ops-soft);color:var(--ops-muted);border-left-color:var(--ops-muted)}
+#equipment-ops-preview .ops-calendar-event span{display:block;font-weight:600}
+#equipment-ops-preview .ops-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--ops-muted);padding:13px 16px;border-top:1px solid var(--ops-line)}
+#equipment-ops-preview .ops-legend&gt;span{display:flex;align-items:center;gap:5px}
+#equipment-ops-preview .ops-dot{height:7px;width:7px;display:inline-block;border-radius:2px;background:var(--ops-blue)}
+#equipment-ops-preview .ops-dot.red{background:var(--ops-red)}
+#equipment-ops-preview .ops-dot.amber{background:var(--ops-amber)}
+#equipment-ops-preview .ops-dot.purple{background:var(--ops-purple)}
+#equipment-ops-preview .ops-dot.gray{background:var(--ops-muted)}
+#equipment-ops-preview .ops-mobile-agenda{display:none}
+#equipment-ops-preview .ops-agenda-row{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:16px 18px;border-top:1px solid var(--ops-line)}
+#equipment-ops-preview .ops-agenda-date{color:var(--ops-muted);font-size:11px}
+#equipment-ops-preview .ops-agenda-date strong{display:block;color:var(--ops-ink);font-size:19px;font-weight:500}
+#equipment-ops-preview .ops-agenda-row h3{font-size:13px}
+#equipment-ops-preview .ops-agenda-row p{font-size:11px;margin-top:4px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-notice{margin-top:15px;padding:12px 15px;background:var(--ops-blue-soft);color:var(--ops-blue);border-radius:8px;font-size:12px;display:flex;gap:8px;align-items:flex-start}
+#equipment-ops-preview .ops-notice svg{flex-shrink:0;width:16px;height:16px;margin-top:1px}
+#equipment-ops-preview .ops-qsearch{padding:16px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+#equipment-ops-preview .ops-qsearch label{font-size:12px;font-weight:600}
+#equipment-ops-preview .ops-qsearch .ops-input{flex:1;min-width:120px;max-width:320px}
+#equipment-ops-preview .ops-parts-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:18px;align-items:start}
+#equipment-ops-preview .ops-stack{display:grid;gap:16px;min-width:0}
+#equipment-ops-preview .ops-part-summary{padding:19px}
+#equipment-ops-preview .ops-part-name{font-size:21px;letter-spacing:-.5px;margin-top:8px!important}
+#equipment-ops-preview .ops-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:20px}
+#equipment-ops-preview .ops-detail-grid dt{color:var(--ops-muted);font-size:11px;margin-bottom:4px}
+#equipment-ops-preview .ops-detail-grid dd{margin:0;font-size:12px;overflow-wrap:anywhere}
+#equipment-ops-preview .ops-stock-summary{display:flex;align-items:baseline;gap:7px;padding:17px 18px}
+#equipment-ops-preview .ops-stock-summary strong{font-size:26px;font-variant-numeric:tabular-nums}
+#equipment-ops-preview .ops-stock-summary span{font-size:12px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-stock-summary .ops-status{margin-left:auto}
+#equipment-ops-preview .ops-chart{padding:17px 18px 18px}
+#equipment-ops-preview .ops-chart-legend{display:flex;gap:14px;font-size:11px;color:var(--ops-muted);justify-content:flex-end;margin-bottom:15px}
+#equipment-ops-preview .ops-chart-legend span{display:flex;align-items:center;gap:5px}
+#equipment-ops-preview .ops-chart-unit{font-size:11px;color:var(--ops-muted);margin-bottom:10px}
+#equipment-ops-preview .ops-bars{display:flex;gap:10px;align-items:flex-end;height:225px;border-bottom:1px solid var(--ops-line);padding:20px 4px 0;background:repeating-linear-gradient(to top,transparent 0px,transparent 44px,var(--ops-line) 44px,var(--ops-line) 45px)}
+#equipment-ops-preview .ops-month-bars{flex:1;display:flex;align-items:flex-end;justify-content:center;gap:4px;height:100%;min-width:0;position:relative}
+#equipment-ops-preview .ops-bar{width:24%;max-width:27px;min-width:12px;position:relative;background:var(--ops-blue);border-radius:3px 3px 0 0}
+#equipment-ops-preview .ops-bar.used{background:var(--ops-muted);opacity:.65}
+#equipment-ops-preview .ops-bar b{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:500;color:var(--ops-ink)}
+#equipment-ops-preview .ops-chart-months{display:flex;padding:9px 4px 0;gap:10px;font-size:11px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-chart-months span{flex:1;text-align:center}
+#equipment-ops-preview .ops-chart-foot{font-size:11px;color:var(--ops-muted);margin-top:19px;padding-top:13px;border-top:1px solid var(--ops-line)}
+#equipment-ops-preview .ops-external-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:17px}
+#equipment-ops-preview .ops-external-links .ops-action{font-size:11px;padding:10px 5px;white-space:normal}
+#equipment-ops-preview .ops-link{border:0;background:transparent;padding:0;color:var(--ops-blue);font-size:12px;text-align:left;text-decoration:none;overflow-wrap:anywhere}
+#equipment-ops-preview .ops-link:hover{text-decoration:underline}
+#equipment-ops-preview .ops-sop-search{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+#equipment-ops-preview .ops-search-wrap{position:relative;flex:1;min-width:180px}
+#equipment-ops-preview .ops-search-wrap&gt;svg{position:absolute;left:12px;top:11px;width:16px;height:16px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-search-wrap .ops-input{width:100%;padding-left:36px;min-height:40px}
+#equipment-ops-preview .ops-sop-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:20px}
+#equipment-ops-preview .ops-sop-tile{display:flex;gap:12px;padding:16px;background:var(--ops-surface);border:1px solid var(--ops-line);border-radius:9px;min-width:0}
+#equipment-ops-preview .ops-doc-icon{width:38px;height:44px;border-radius:7px;display:grid;place-items:center;color:var(--ops-blue);background:var(--ops-blue-soft);flex-shrink:0}
+#equipment-ops-preview .ops-doc-icon svg{width:21px;height:21px}
+#equipment-ops-preview .ops-sop-tile h3{font-size:12px;line-height:1.6;overflow-wrap:anywhere;margin:5px 0}
+#equipment-ops-preview .ops-sop-tile p{font-size:11px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-approval-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:17px}
+#equipment-ops-preview .ops-approval-row{padding:19px;display:grid;grid-template-columns:1fr auto;gap:15px;border-top:1px solid var(--ops-line)}
+#equipment-ops-preview .ops-approval-row:first-child{border:0}
+#equipment-ops-preview .ops-approval-row h3{font-size:14px;margin:9px 0 6px}
+#equipment-ops-preview .ops-approval-meta{display:flex;gap:7px 15px;flex-wrap:wrap;font-size:11px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-approval-actions{display:flex;align-items:center;gap:6px}
+#equipment-ops-preview .ops-approval-footer{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ops-muted);margin-top:11px}
+#equipment-ops-preview .ops-permission-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
+#equipment-ops-preview .ops-form-body{padding:20px}
+#equipment-ops-preview .ops-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 14px}
+#equipment-ops-preview .ops-field{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:12px}
+#equipment-ops-preview .ops-field.full{grid-column:1/-1}
+#equipment-ops-preview .ops-field label{font-weight:500}
+#equipment-ops-preview .ops-field .ops-input,#equipment-ops-preview .ops-field .ops-select,#equipment-ops-preview .ops-field .ops-textarea{width:100%}
+#equipment-ops-preview .ops-field input[readonly]{background:var(--ops-soft);color:var(--ops-muted)}
+#equipment-ops-preview .ops-textarea{resize:vertical;min-height:85px}
+#equipment-ops-preview .ops-form-footer{padding:16px 20px;border-top:1px solid var(--ops-line);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#equipment-ops-preview .ops-role-list{padding:3px 18px}
+#equipment-ops-preview .ops-role-row{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--ops-line);font-size:12px}
+#equipment-ops-preview .ops-role-row:last-child{border:0}
+#equipment-ops-preview .ops-role-row p{font-size:11px;color:var(--ops-muted);margin-top:4px}
+#equipment-ops-preview .ops-dock{flex:0 0 302px;width:302px;min-width:0;border-left:1px solid var(--ops-line);background:var(--ops-surface);display:flex;flex-direction:column;align-self:flex-start;height:775px}
+#equipment-ops-preview .ops-dock-header{display:flex;align-items:center;justify-content:space-between;padding:15px;border-bottom:1px solid var(--ops-line);gap:8px}
+#equipment-ops-preview .ops-dock-info{font-size:11px;color:var(--ops-muted);padding:10px 15px;border-bottom:1px solid var(--ops-line);display:flex;justify-content:space-between;gap:7px}
+#equipment-ops-preview .ops-chat-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px 14px;scrollbar-width:thin;background:var(--ops-surface)}
+#equipment-ops-preview .ops-chat-day{text-align:center;color:var(--ops-muted);font-size:11px;margin-bottom:20px}
+#equipment-ops-preview .ops-message{margin-bottom:19px;display:flex;gap:8px;align-items:flex-start}
+#equipment-ops-preview .ops-message .ops-avatar{width:27px;height:27px;font-size:11px}
+#equipment-ops-preview .ops-message-content{min-width:0;flex:1}
+#equipment-ops-preview .ops-message-head{font-size:11px;margin-bottom:5px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+#equipment-ops-preview .ops-message-head span{font-size:11px;color:var(--ops-muted)}
+#equipment-ops-preview .ops-bubble{background:var(--ops-soft);border-radius:0 9px 9px 9px;padding:10px 11px;font-size:12px;line-height:1.7;overflow-wrap:anywhere;white-space:pre-wrap}
+#equipment-ops-preview .ops-message.mine{padding-left:23px}
+#equipment-ops-preview .ops-message.mine .ops-bubble{background:var(--ops-blue-soft);border-radius:9px 0 9px 9px}
+#equipment-ops-preview .ops-message.mine .ops-message-head{justify-content:flex-end}
+#equipment-ops-preview .ops-message-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:4px}
+#equipment-ops-preview .ops-message-actions button{font-size:11px;color:var(--ops-muted);border:0;background:transparent;padding:3px}
+#equipment-ops-preview .ops-system-message{padding:11px 12px;border:1px solid var(--ops-line);border-radius:7px;margin:8px 0 20px;font-size:11px;color:var(--ops-muted);line-height:1.7}
+#equipment-ops-preview .ops-system-message strong{display:block;color:var(--ops-ink);font-size:11px;margin:3px 0}
+#equipment-ops-preview .ops-system-message .ops-link{font-size:11px;margin-top:5px}
+#equipment-ops-preview .ops-chat-compose{border-top:1px solid var(--ops-line);padding:13px;background:var(--ops-surface)}
+#equipment-ops-preview .ops-chat-compose textarea{border:1px solid var(--ops-line);border-radius:7px;resize:none;min-height:76px;width:100%;padding:10px;background:var(--ops-soft);font-size:12px}
+#equipment-ops-preview .ops-chat-compose .ops-spread{margin-top:8px}
+#equipment-ops-preview .ops-ai-intro{background:var(--ops-blue-soft);border-radius:9px;padding:15px;margin-bottom:18px}
+#equipment-ops-preview .ops-ai-intro h3{font-size:15px;margin:7px 0}
+#equipment-ops-preview .ops-ai-intro p{font-size:12px;color:var(--ops-muted);line-height:1.7}
+#equipment-ops-preview .ops-suggestions{display:flex;flex-direction:column;gap:7px;margin-top:12px}
+#equipment-ops-preview .ops-suggestion{text-align:left;border:1px solid var(--ops-line);border-radius:6px;padding:9px 10px;background:var(--ops-surface);font-size:11px;color:var(--ops-blue)}
+#equipment-ops-preview .ops-citations{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+#equipment-ops-preview .ops-citation{font-size:11px;border:1px solid var(--ops-line);border-radius:4px;color:var(--ops-blue);background:var(--ops-surface);padding:3px 5px;text-align:left}
+#equipment-ops-preview .ops-modal{position:absolute;inset:0;z-index:20;background:light-dark(#14294366,#00000088);display:flex;justify-content:center;align-items:flex-start;padding:90px 20px 24px;overflow:auto}
+#equipment-ops-preview .ops-dialog{background:var(--ops-surface);border:1px solid var(--ops-line);border-radius:12px;width:540px;max-width:100%;box-shadow:0 14px 55px var(--ops-shadow)}
+#equipment-ops-preview .ops-dialog-head{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--ops-line)}
+#equipment-ops-preview .ops-dialog-head h2{font-size:17px;letter-spacing:-.4px}
+#equipment-ops-preview .ops-dialog-body{padding:20px}
+#equipment-ops-preview .ops-dialog-body p{font-size:13px;line-height:1.8;color:var(--ops-muted)}
+#equipment-ops-preview .ops-dialog-body h3{font-size:14px;margin-bottom:9px}
+#equipment-ops-preview .ops-dialog-body ul{padding-left:18px;font-size:12px;color:var(--ops-muted);line-height:1.9}
+#equipment-ops-preview .ops-dialog-footer{border-top:1px solid var(--ops-line);padding:15px 20px;display:flex;justify-content:flex-end;gap:8px}
+#equipment-ops-preview .ops-toast{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);padding:12px 18px;background:var(--ops-ink);color:var(--ops-surface);border-radius:9px;box-shadow:0 5px 20px var(--ops-shadow);z-index:30;font-size:12px;max-width:calc(100% - 32px);text-align:center}
+@container ops-content (max-width:680px){
+ #equipment-ops-preview .ops-project{grid-template-columns:135px 1fr;gap:15px;padding:16px}
+ #equipment-ops-preview .ops-project h2{font-size:17px}
+ #equipment-ops-preview .ops-kpi{padding:14px}
+ #equipment-ops-preview .ops-kpi-value{font-size:24px}
+ #equipment-ops-preview .ops-two-columns{grid-template-columns:1fr}
+ #equipment-ops-preview .ops-parts-grid,#equipment-ops-preview .ops-permission-layout{grid-template-columns:1fr}
+ #equipment-ops-preview .ops-sop-featured{grid-template-columns:1fr}
+ #equipment-ops-preview .ops-scope-note{display:none}
+}
+@container ops-content (max-width:520px){
+ #equipment-ops-preview .ops-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #equipment-ops-preview .ops-project{grid-template-columns:1fr}
+ #equipment-ops-preview .ops-project-media .ops-photo{height:95px}
+ #equipment-ops-preview .ops-month-view{display:none}
+ #equipment-ops-preview .ops-mobile-agenda{display:block}
+ #equipment-ops-preview .ops-approval-row{grid-template-columns:1fr}
+ #equipment-ops-preview .ops-approval-actions{justify-content:flex-end}
+ #equipment-ops-preview .ops-agenda-row{grid-template-columns:42px 1fr;gap:10px}
+ #equipment-ops-preview .ops-agenda-row&gt;button{grid-column:2;justify-self:start}
+ #equipment-ops-preview .ops-form-grid{grid-template-columns:1fr}
+ #equipment-ops-preview .ops-heading h1{font-size:21px}
+ #equipment-ops-preview .ops-filterbar{gap:7px}
+ #equipment-ops-preview .ops-filter-caption{width:100%}
+ #equipment-ops-preview .ops-filterbar .ops-select{flex:1;max-width:100%}
+ #equipment-ops-preview .ops-bars{gap:5px}
+ #equipment-ops-preview .ops-external-links{grid-template-columns:1fr}
+}
+@media(max-width:850px){
+ #equipment-ops-preview .ops-navigation{gap:0;padding:0 10px}
+ #equipment-ops-preview .ops-pages{flex-basis:100%;justify-content:space-between}
+ #equipment-ops-preview .ops-utilities{padding:8px 0;justify-content:flex-end;width:100%;border-top:1px solid var(--ops-line)}
+ #equipment-ops-preview .ops-topbar{gap:14px;padding:16px 18px}
+ #equipment-ops-preview .ops-preview-label{order:3;width:100%}
+ #equipment-ops-preview .ops-main{padding:18px}
+}
+@media(max-width:760px){
+ #equipment-ops-preview .ops-workarea{flex-direction:column;min-height:0}
+ #equipment-ops-preview .ops-dock{width:100%;flex-basis:auto;border-left:0;border-bottom:1px solid var(--ops-line);height:560px;align-self:stretch;order:-1}
+}
+@media(max-width:520px){
+ #equipment-ops-preview .ops-pages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+ #equipment-ops-preview .ops-nav{font-size:11px;gap:4px;padding:0 5px;min-height:44px}
+ #equipment-ops-preview .ops-nav svg{width:14px;height:14px}
+ #equipment-ops-preview .ops-main{padding:16px 12px}
+ #equipment-ops-preview .ops-topbar{padding:15px 14px}
+ #equipment-ops-preview .ops-brand strong{font-size:17px}
+ #equipment-ops-preview .ops-profile{flex-basis:100%;order:3}
+ #equipment-ops-preview .ops-preview-label{order:2;width:auto;font-size:11px}
+ #equipment-ops-preview .ops-modal{padding:35px 12px 20px}
+ #equipment-ops-preview .ops-dialog-body,#equipment-ops-preview .ops-form-body{padding:16px}
+}
+@media(pointer:coarse){
+ #equipment-ops-preview button{min-height:44px!important;min-width:44px}
+ #equipment-ops-preview input,#equipment-ops-preview select,#equipment-ops-preview textarea{font-size:16px!important;min-height:44px!important}
+ #equipment-ops-preview .ops-message-actions{gap:12px}
+}
+&lt;/style&gt;
+&lt;script&gt;
+(() =&gt; {
+  const root = document.getElementById(&#x27;equipment-ops-preview&#x27;);
+  const main = root.querySelector(&#x27;#ops-main&#x27;);
+  const dock = root.querySelector(&#x27;#ops-dock&#x27;);
+  const modal = root.querySelector(&#x27;#ops-modal&#x27;);
+  const esc = v =&gt; String(v ?? &#x27;&#x27;).replace(/[&amp;&lt;&gt;&quot;&#x27;]/g, c =&gt; ({&#x27;&amp;&#x27;:&#x27;&amp;amp;&#x27;,&#x27;&lt;&#x27;:&#x27;&amp;lt;&#x27;,&#x27;&gt;&#x27;:&#x27;&amp;gt;&#x27;,&#x27;&quot;&#x27;:&#x27;&amp;quot;&#x27;,&quot;&#x27;&quot;:&#x27;&amp;#39;&#x27;}[c]));
+  const icon = n =&gt; `&lt;i data-lucide=&quot;${n}&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;`;
+  const lines = {&#x27;LINE-A&#x27;:[&#x27;DIFF&#x27;,&#x27;ETCH&#x27;],&#x27;LINE-B&#x27;:[&#x27;PHOTO&#x27;,&#x27;ETCH&#x27;],&#x27;LINE-C&#x27;:[&#x27;DIFF&#x27;,&#x27;CVD&#x27;]};
+  const statusMeta = {done:[&#x27;완료&#x27;,&#x27;green&#x27;],progress:[&#x27;진행 중&#x27;,&#x27;blue&#x27;],pending:[&#x27;결재중&#x27;,&#x27;amber&#x27;],blocked:[&#x27;보류&#x27;,&#x27;red&#x27;],approved:[&#x27;승인&#x27;,&#x27;green&#x27;],rejected:[&#x27;거부&#x27;,&#x27;red&#x27;]};
+  const tag = (t,c=&#x27;&#x27;) =&gt; `&lt;span class=&quot;ops-status ${c}&quot;&gt;${esc(t)}&lt;/span&gt;`;
+  const badge = s =&gt; tag(...(statusMeta[s] || [s,&#x27;&#x27;]));
+  const state = {page:&#x27;rollout&#x27;,dock:null,line:&#x27;all&#x27;,sdwt:&#x27;all&#x27;,eq:&#x27;&#x27;,project:&#x27;HW&#x27;,status:&#x27;all&#x27;,tablePage:1,calYear:2026,calMonth:8,calView:&#x27;month&#x27;,weekStart:13,approvalTab:&#x27;todo&#x27;,approvalType:&#x27;all&#x27;,sopQuery:&#x27;&#x27;,sopWork:&#x27;all&#x27;,qcode:&#x27;Q-10234&#x27;,chatUnread:2,myRequests:[]};
+  const eqps = Object.keys(lines).flatMap((line,l) =&gt; Array.from({length:8},(_,i)=&gt;({sn:`SN-${l+1}26${String(i+1).padStart(4,&#x27;0&#x27;)}`,line,sdwt:lines[line][i%2],eqp:`${[&#x27;DF&#x27;,&#x27;ET&#x27;,&#x27;CV&#x27;][l]}-${String(i+1).padStart(3,&#x27;0&#x27;)}`,unit:`U${i%2+1}`,hw:l===0?(i&lt;6?&#x27;done&#x27;:i===6?&#x27;progress&#x27;:&#x27;pending&#x27;):l===1?(i&lt;7?&#x27;done&#x27;:&#x27;blocked&#x27;):(i&lt;5?&#x27;done&#x27;:i&lt;7?&#x27;progress&#x27;:&#x27;blocked&#x27;),sw:i&lt;6 || l===0?&#x27;done&#x27;:i===6?&#x27;progress&#x27;:&#x27;pending&#x27;})));
+  const works = [
+    {id:1,day:3,month:8,year:2026,time:&#x27;09:00&#x27;,end:&#x27;12:00&#x27;,type:&#x27;PM&#x27;,line:&#x27;LINE-B&#x27;,sdwt:&#x27;PHOTO&#x27;,eqp:&#x27;ET-001&#x27;,title:&#x27;월간 예방 정비&#x27;,status:&#x27;approved&#x27;,vendor:&#x27;에스엠테크&#x27;,requester:&#x27;이서연&#x27;,detail:&#x27;진공 펌프와 필터 점검, 소모품 교체&#x27;,sop:&#x27;PHOTO_ET-001_PM_진공펌프점검_v2.1.pdf&#x27;},
+    {id:2,day:8,month:8,year:2026,time:&#x27;13:00&#x27;,end:&#x27;15:00&#x27;,type:&#x27;BM&#x27;,line:&#x27;LINE-C&#x27;,sdwt:&#x27;DIFF&#x27;,eqp:&#x27;CV-003&#x27;,title:&#x27;센서 이상 조치&#x27;,status:&#x27;approved&#x27;,vendor:&#x27;한빛시스템&#x27;,requester:&#x27;정지훈&#x27;,detail:&#x27;이송부 센서 점검 및 동작 확인&#x27;,sop:&#x27;DIFF_공통_BM_센서교체_v1.2.pdf&#x27;},
+    {id:3,day:14,month:8,year:2026,time:&#x27;09:00&#x27;,end:&#x27;11:30&#x27;,type:&#x27;PM&#x27;,line:&#x27;LINE-A&#x27;,sdwt:&#x27;DIFF&#x27;,eqp:&#x27;DF-001&#x27;,title:&#x27;정기 PM · 필터 교체&#x27;,status:&#x27;approved&#x27;,vendor:&#x27;에스엠테크&#x27;,requester:&#x27;김민수&#x27;,detail:&#x27;필터 교체 후 압력 점검 및 정상 동작 확인&#x27;,sop:&#x27;DIFF_DF-001_PM_필터교체_v3.2.pdf&#x27;},
+    {id:4,day:15,month:8,year:2026,time:&#x27;10:00&#x27;,end:&#x27;12:00&#x27;,type:&#x27;개조&#x27;,line:&#x27;LINE-A&#x27;,sdwt:&#x27;ETCH&#x27;,eqp:&#x27;DF-008&#x27;,title:&#x27;안전 커버 설치&#x27;,status:&#x27;pending&#x27;,vendor:&#x27;한빛시스템&#x27;,requester:&#x27;박준호&#x27;,detail:&#x27;이송부 안전 커버 설치 및 인터록 기능 확인&#x27;,sop:&#x27;ETCH_DF-008_개조_안전커버_v2.0.pdf&#x27;},
+    {id:5,day:16,month:8,year:2026,time:&#x27;14:00&#x27;,end:&#x27;16:00&#x27;,type:&#x27;PM&#x27;,line:&#x27;LINE-B&#x27;,sdwt:&#x27;PHOTO&#x27;,eqp:&#x27;ET-005&#x27;,title:&#x27;진공 펌프 점검&#x27;,status:&#x27;approved&#x27;,vendor:&#x27;에스엠테크&#x27;,requester:&#x27;이서연&#x27;,detail:&#x27;월간 펌프 운전 상태 및 누설 점검&#x27;,sop:&#x27;PHOTO_ET-001_PM_진공펌프점검_v2.1.pdf&#x27;},
+    {id:6,day:21,month:8,year:2026,time:&#x27;09:00&#x27;,end:&#x27;10:30&#x27;,type:&#x27;비산정&#x27;,line:&#x27;LINE-C&#x27;,sdwt:&#x27;CVD&#x27;,eqp:&#x27;CV-002&#x27;,title:&#x27;업체 현장 점검&#x27;,status:&#x27;approved&#x27;,vendor:&#x27;한빛시스템&#x27;,requester:&#x27;정지훈&#x27;,detail:&#x27;정기 현장 점검 및 개선 항목 협의&#x27;,sop:&#x27;CVD_공통_현장점검_v1.0.pdf&#x27;},
+    {id:7,day:28,month:8,year:2026,time:&#x27;10:00&#x27;,end:&#x27;12:00&#x27;,type:&#x27;PM&#x27;,line:&#x27;LINE-A&#x27;,sdwt:&#x27;DIFF&#x27;,eqp:&#x27;DF-005&#x27;,title:&#x27;정기 PM&#x27;,status:&#x27;approved&#x27;,vendor:&#x27;에스엠테크&#x27;,requester:&#x27;김민수&#x27;,detail:&#x27;월간 예방 정비&#x27;,sop:&#x27;DIFF_DF-001_PM_필터교체_v3.2.pdf&#x27;}
+  ];
+  const approvals = [
+    {id:101,kind:&#x27;work&#x27;,line:&#x27;LINE-A&#x27;,sdwt:&#x27;ETCH&#x27;,requester:&#x27;박준호&#x27;,loginid:&#x27;junho.park&#x27;,role:&#x27;user&#x27;,title:&#x27;DF-008 · 안전 커버 설치 작업 등록&#x27;,time:&#x27;2026.09.14 09:12&#x27;,reason:&#x27;횡전개 일정에 맞춰 9월 15일 안전 커버 설치를 요청합니다.&#x27;,status:&#x27;pending&#x27;,workId:4},
+    {id:102,kind:&#x27;permission&#x27;,line:&#x27;LINE-A&#x27;,sdwt:&#x27;DIFF&#x27;,requester:&#x27;최유진&#x27;,loginid:&#x27;yujin.choi&#x27;,role:&#x27;user&#x27;,title:&#x27;최유진 · user 권한 신청&#x27;,time:&#x27;2026.09.14 10:05&#x27;,reason:&#x27;DIFF 설비 담당으로 배정되어 작업 등록 권한을 신청합니다.&#x27;,status:&#x27;pending&#x27;},
+    {id:103,kind:&#x27;permission&#x27;,line:&#x27;LINE-A&#x27;,sdwt:&#x27;ETCH&#x27;,requester:&#x27;이도현&#x27;,loginid:&#x27;dohyun.lee&#x27;,role:&#x27;admin&#x27;,title:&#x27;이도현 · admin 권한 신청&#x27;,time:&#x27;2026.09.14 11:28&#x27;,reason:&#x27;LINE-A ETCH 교대조 결재 담당자 지정을 요청합니다.&#x27;,status:&#x27;pending&#x27;}
+  ];
+  const sops = [
+    {id:1,name:&#x27;DIFF_DF-001_PM_필터교체_v3.2.pdf&#x27;,line:&#x27;LINE-A&#x27;,work:&#x27;PM&#x27;,desc:&#x27;필터 교체 및 차압 점검&#x27;,rev:&#x27;v3.2&#x27;,date:&#x27;2026.09.10&#x27;,owner:&#x27;김민수&#x27;,recommended:true},
+    {id:2,name:&#x27;ETCH_DF-008_개조_안전커버_v2.0.pdf&#x27;,line:&#x27;LINE-A&#x27;,work:&#x27;개조&#x27;,desc:&#x27;안전 커버 설치와 인터록 검증&#x27;,rev:&#x27;v2.0&#x27;,date:&#x27;2026.09.11&#x27;,owner:&#x27;박준호&#x27;,recommended:true},
+    {id:3,name:&#x27;PHOTO_ET-001_PM_진공펌프점검_v2.1.pdf&#x27;,line:&#x27;LINE-B&#x27;,work:&#x27;PM&#x27;,desc:&#x27;진공 펌프 정기 점검 절차&#x27;,rev:&#x27;v2.1&#x27;,date:&#x27;2026.09.07&#x27;,owner:&#x27;이서연&#x27;},
+    {id:4,name:&#x27;DIFF_공통_BM_센서교체_v1.2.pdf&#x27;,line:&#x27;LINE-C&#x27;,work:&#x27;BM&#x27;,desc:&#x27;센서 교체 및 원점 설정&#x27;,rev:&#x27;v1.2&#x27;,date:&#x27;2026.09.03&#x27;,owner:&#x27;정지훈&#x27;},
+    {id:5,name:&#x27;CVD_공통_현장점검_v1.0.pdf&#x27;,line:&#x27;LINE-C&#x27;,work:&#x27;비산정&#x27;,desc:&#x27;협력업체 현장 점검 체크리스트&#x27;,rev:&#x27;v1.0&#x27;,date:&#x27;2026.08.28&#x27;,owner:&#x27;정지훈&#x27;},
+    {id:6,name:&#x27;공통_SW_제어프로그램업데이트_v1.4.url&#x27;,line:&#x27;공통&#x27;,work:&#x27;개조&#x27;,desc:&#x27;제어 SW 업데이트 및 복구 절차&#x27;,rev:&#x27;v1.4&#x27;,date:&#x27;2026.09.12&#x27;,owner:&#x27;김민수&#x27;}
+  ];
+  const parts = {
+    &#x27;Q-10234&#x27;:{name:&#x27;진공 펌프 필터&#x27;,model:&#x27;VPF-200&#x27;,maker:&#x27;한빛테크&#x27;,unit:&#x27;EA&#x27;,stock:[18,12,8],order:[24,18,32,20,28,36],use:[20,16,26,22,24,30]},
+    &#x27;Q-20810&#x27;:{name:&#x27;광전 센서&#x27;,model:&#x27;PS-45N&#x27;,maker:&#x27;에스엠센서&#x27;,unit:&#x27;EA&#x27;,stock:[8,6,4],order:[10,14,10,18,12,20],use:[8,10,12,14,10,16]}
+  };
+  const messages = [
+    {id:1,who:&#x27;이서연&#x27;,line:&#x27;LINE-B&#x27;,time:&#x27;09:02&#x27;,text:&#x27;B라인 펌프 점검 SOP를 최신 버전으로 올렸습니다. 다음 PM 때 참고해 주세요.&#x27;},
+    {id:2,system:true,text:&#x27;박준호님이 작업 등록 결재를 요청했습니다.&#x27;,title:&#x27;LINE-A · DF-008 · 안전 커버 설치&#x27;,time:&#x27;09:12&#x27;,page:&#x27;approvals&#x27;},
+    {id:3,who:&#x27;김민수&#x27;,mine:true,time:&#x27;09:18&#x27;,text:&#x27;확인했습니다. A라인도 변경된 SOP 기준으로 진행하겠습니다.&#x27;},
+    {id:4,who:&#x27;박준호&#x27;,line:&#x27;LINE-A&#x27;,time:&#x27;10:36&#x27;,text:&#x27;안전 커버 설치 전 사진과 작업 자료를 횡전개 항목에 첨부했습니다.&#x27;},
+    {id:5,who:&#x27;정지훈&#x27;,line:&#x27;LINE-C&#x27;,time:&#x27;11:42&#x27;,text:&#x27;C라인 CV-008은 부품 입고 후 진행 예정입니다. 일정 확정되면 캘린더에 반영하겠습니다.&#x27;}
+  ];
+  const aiMessages = [];
+  let toastTimer, previousFocus;
+  function paintIcons(){if(typeof lucide!==&#x27;undefined&#x27;) lucide.createIcons({attrs:{width:16,height:16}});}
+  function toast(text){const el=root.querySelector(&#x27;#ops-toast&#x27;);el.textContent=text;el.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=&gt;el.hidden=true,3500);}
+  function title(label,sub,action=&#x27;&#x27;){return `&lt;div class=&quot;ops-heading&quot;&gt;&lt;div&gt;&lt;div class=&quot;ops-eyebrow&quot;&gt;OPERATIONS / ${state.page===&#x27;permission&#x27;?&#x27;MY ACCOUNT&#x27;:&#x27;WORKSPACE&#x27;}&lt;/div&gt;&lt;h1&gt;${label}&lt;/h1&gt;&lt;p class=&quot;ops-subtitle&quot;&gt;${sub}&lt;/p&gt;&lt;/div&gt;${action}&lt;/div&gt;`;}
+  function action(label,attrs=&#x27;&#x27;,kind=&#x27;&#x27;){return `&lt;button type=&quot;button&quot; class=&quot;ops-action ${kind}&quot; ${attrs}&gt;${label}&lt;/button&gt;`;}
+  function filters(){return `&lt;div class=&quot;ops-filterbar&quot;&gt;&lt;span class=&quot;ops-filter-caption&quot;&gt;${icon(&#x27;sliders-horizontal&#x27;)}조회 범위&lt;/span&gt;&lt;select class=&quot;ops-select&quot; data-filter=&quot;line&quot; aria-label=&quot;조회 라인&quot;&gt;&lt;option value=&quot;all&quot;&gt;전체 LINE&lt;/option&gt;${Object.keys(lines).map(x=&gt;`&lt;option ${state.line===x?&#x27;selected&#x27;:&#x27;&#x27;}&gt;${x}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;select class=&quot;ops-select&quot; data-filter=&quot;sdwt&quot; aria-label=&quot;조회 SDWT&quot;&gt;&lt;option value=&quot;all&quot;&gt;전체 SDWT&lt;/option&gt;${[...new Set(state.line===&#x27;all&#x27;?Object.values(lines).flat():lines[state.line])].map(x=&gt;`&lt;option ${state.sdwt===x?&#x27;selected&#x27;:&#x27;&#x27;}&gt;${x}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;input class=&quot;ops-input&quot; data-eq-search aria-label=&quot;설비 검색&quot; placeholder=&quot;설비 ID / SN 검색&quot; value=&quot;${esc(state.eq)}&quot;&gt;&lt;span class=&quot;ops-scope-note&quot;&gt;모든 라인 조회 가능&lt;/span&gt;&lt;/div&gt;`;}
+  function eqFilter(e){const sn=e.sn||eqps.find(q=&gt;q.eqp===e.eqp&amp;&amp;q.line===e.line)?.sn||&#x27;&#x27;;return (state.line===&#x27;all&#x27;||e.line===state.line)&amp;&amp;(state.sdwt===&#x27;all&#x27;||e.sdwt===state.sdwt)&amp;&amp;(!state.eq||`${e.eqp} ${sn}`.toLowerCase().includes(state.eq.toLowerCase()));}
+  function filteredEqps(){return eqps.filter(eqFilter);}
+  function updateChrome(){
+    root.querySelectorAll(&#x27;[data-page]&#x27;).forEach(b=&gt;{b.classList.toggle(&#x27;is-active&#x27;,b.dataset.page===state.page);if(b.classList.contains(&#x27;ops-nav&#x27;)) b.setAttribute(&#x27;aria-current&#x27;,b.dataset.page===state.page?&#x27;page&#x27;:&#x27;false&#x27;);});
+    const count=approvals.filter(a=&gt;a.status===&#x27;pending&#x27;&amp;&amp;a.line===&#x27;LINE-A&#x27;&amp;&amp;(a.kind===&#x27;work&#x27;||[&#x27;user&#x27;,&#x27;admin&#x27;].includes(a.role))).length;
+    root.querySelector(&#x27;[data-approval-count]&#x27;).textContent=count?`(${count&gt;99?&#x27;99+&#x27;:count})`:&#x27;&#x27;;
+    root.querySelector(&#x27;[data-chat-count]&#x27;).textContent=state.chatUnread?`(${state.chatUnread&gt;99?&#x27;99+&#x27;:state.chatUnread})`:&#x27;&#x27;;
+    root.querySelectorAll(&#x27;.ops-utilities [data-dock]&#x27;).forEach(b=&gt;{b.classList.toggle(&#x27;is-active&#x27;,b.dataset.dock===state.dock);b.setAttribute(&#x27;aria-expanded&#x27;,String(b.dataset.dock===state.dock));});
+  }
+  function renderMain(){
+    const views={rollout:renderRollout,calendar:renderCalendar,parts:renderParts,sop:renderSop,approvals:renderApprovals,permission:renderPermission};
+    main.innerHTML=views[state.page]();updateChrome();paintIcons();
+  }
+  function renderRollout(){
+    const sw=state.project===&#x27;SW&#x27;, rows=filteredEqps(), value=e=&gt;sw?e.sw:e.hw;
+    const counts=[&#x27;done&#x27;,&#x27;progress&#x27;,&#x27;pending&#x27;,&#x27;blocked&#x27;].map(s=&gt;rows.filter(e=&gt;value(e)===s).length);
+    const percent=rows.length?Math.round(counts[0]/rows.length*100):0;
+    const filtered=rows.filter(e=&gt;state.status===&#x27;all&#x27;||value(e)===state.status);const pageCount=Math.max(1,Math.ceil(filtered.length/6));state.tablePage=Math.min(state.tablePage,pageCount);
+    const shown=filtered.slice((state.tablePage-1)*6,state.tablePage*6);
+    return title(&#x27;횡전개 진척 현황&#x27;,&#x27;라인부터 개별 설비까지, 적용 현황을 한눈에 확인합니다.&#x27;,action(icon(&#x27;plus&#x27;)+&#x27; 항목 추가&#x27;,&#x27;data-action=&quot;new-project&quot;&#x27;,&#x27;ops-action-primary&#x27;))+filters()+`
+      &lt;div class=&quot;ops-project-tabs&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;ops-project-tab ${!sw?&#x27;is-active&#x27;:&#x27;&#x27;}&quot; data-project=&quot;HW&quot;&gt;&lt;span class=&quot;ops-type&quot;&gt;HW&lt;/span&gt;이송부 안전 커버&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;ops-project-tab ${sw?&#x27;is-active&#x27;:&#x27;&#x27;}&quot; data-project=&quot;SW&quot;&gt;&lt;span class=&quot;ops-type&quot;&gt;SW&lt;/span&gt;제어 프로그램 업데이트&lt;/button&gt;&lt;/div&gt;
+      &lt;section class=&quot;ops-surface ops-project&quot;&gt;
+        &lt;div class=&quot;ops-project-media&quot;&gt;&lt;div class=&quot;ops-photo&quot;&gt;${icon(sw?&#x27;monitor-up&#x27;:&#x27;images&#x27;)}&lt;span&gt;${sw?&#x27;업데이트 화면 이미지&#x27;:&#x27;설치 전 · 후 대표 사진&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-photo-footer&quot;&gt;${sw?&#x27;release-screen.png&#x27;:&#x27;cover-before-after.jpg&#x27;} · 이미지 영역&lt;/div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;div class=&quot;ops-spread&quot;&gt;&lt;span class=&quot;ops-note&quot;&gt;${sw?&#x27;SW-2026-009&#x27;:&#x27;HW-2026-014&#x27;} · ${sw?&#x27;버전 배포형&#x27;:&#x27;체크리스트형&#x27;}&lt;/span&gt;${tag(&#x27;진행 중&#x27;,&#x27;blue&#x27;)}&lt;/div&gt;&lt;h2&gt;${sw?&#x27;제어 프로그램 v2.4.1 업데이트&#x27;:&#x27;이송부 안전 커버 표준화&#x27;}&lt;/h2&gt;&lt;p&gt;${sw?&#x27;알람 처리 로직 개선 버전을 배포하고, 설비별 버전과 검증 결과를 확인합니다.&#x27;:&#x27;작업자 접근 구간에 안전 커버를 설치하고, 인터록 동작과 현장 검증을 완료합니다.&#x27;}&lt;/p&gt;&lt;div class=&quot;ops-flex&quot;&gt;&lt;span class=&quot;ops-note&quot;&gt;담당 김민수 · 마감 2026.09.30&lt;/span&gt;&lt;button class=&quot;ops-file-chip&quot; data-action=&quot;project-file&quot; type=&quot;button&quot;&gt;${icon(&#x27;paperclip&#x27;)}${sw?&#x27;릴리스 노트.pdf&#x27;:&#x27;설치 가이드.pdf&#x27;}&lt;/button&gt;&lt;button class=&quot;ops-file-chip&quot; data-action=&quot;project-file&quot; type=&quot;button&quot;&gt;${icon(&#x27;paperclip&#x27;)}체크리스트.xlsx&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;/section&gt;
+      &lt;div class=&quot;ops-kpis&quot;&gt;
+        &lt;div class=&quot;ops-kpi&quot;&gt;&lt;div class=&quot;ops-kpi-label&quot;&gt;대상 설비 ${icon(&#x27;boxes&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-kpi-value&quot;&gt;${rows.length}&lt;span&gt;대&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi-foot&quot;&gt;${state.line===&#x27;all&#x27;?&#x27;3개 라인&#x27;:state.line} · 확정 대상 기준&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;ops-kpi ops-kpi-highlight&quot;&gt;&lt;div class=&quot;ops-kpi-label&quot;&gt;완료율 ${icon(&#x27;circle-check&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-kpi-value&quot;&gt;${percent}&lt;span&gt;%&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi-foot&quot;&gt;${counts[0]} / ${rows.length}대 완료&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;ops-kpi&quot;&gt;&lt;div class=&quot;ops-kpi-label&quot;&gt;진행 중 ${icon(&#x27;loader-circle&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-kpi-value&quot;&gt;${counts[1]}&lt;span&gt;대&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi-foot&quot;&gt;${sw?&#x27;배포 후 검증 진행&#x27;:&#x27;설치 또는 검증 진행&#x27;}&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;ops-kpi&quot;&gt;&lt;div class=&quot;ops-kpi-label&quot;&gt;결재 대기 ${icon(&#x27;clock-3&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-kpi-value&quot;&gt;${counts[2]}&lt;span&gt;대&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi-foot&quot;&gt;보류 ${counts[3]}대 별도 관리&lt;/div&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ops-two-columns&quot;&gt;&lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;라인별 진척률&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;완료 / 대상&lt;/span&gt;&lt;/div&gt;${Object.keys(lines).filter(l=&gt;state.line===&#x27;all&#x27;||l===state.line).map(l=&gt;{const target=rows.filter(e=&gt;e.line===l),done=target.filter(e=&gt;value(e)===&#x27;done&#x27;).length,p=target.length?Math.round(done/target.length*100):0;return `&lt;div class=&quot;ops-line-progress&quot;&gt;&lt;span&gt;${l}&lt;/span&gt;&lt;div class=&quot;ops-meter&quot; role=&quot;progressbar&quot; aria-label=&quot;${l} 완료율&quot; aria-valuenow=&quot;${p}&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot;&gt;&lt;span style=&quot;width:${p}%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;strong&gt;${p}%&lt;small&gt;${done} / ${target.length}대&lt;/small&gt;&lt;/strong&gt;&lt;/div&gt;`;}).join(&#x27;&#x27;)}&lt;/section&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;확인이 필요한 설비&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;결재 대기 · 보류&lt;/span&gt;&lt;/div&gt;${rows.filter(e=&gt;[&#x27;pending&#x27;,&#x27;blocked&#x27;].includes(value(e))).slice(0,3).map(e=&gt;`&lt;div class=&quot;ops-attention-row&quot;&gt;&lt;div&gt;&lt;strong&gt;${e.eqp} &lt;span class=&quot;ops-note&quot;&gt;${e.line}&lt;/span&gt;&lt;/strong&gt;&lt;p&gt;${value(e)===&#x27;pending&#x27;?&#x27;변경 요청 검토가 필요합니다&#x27;:&#x27;부품 입고 일정 확인 중&#x27;}&lt;/p&gt;&lt;/div&gt;${badge(value(e))}&lt;/div&gt;`).join(&#x27;&#x27;)||&#x27;&lt;div class=&quot;ops-empty&quot;&gt;확인이 필요한 설비가 없습니다.&lt;/div&gt;&#x27;}&lt;/section&gt;&lt;/div&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;설비별 ${sw?&#x27;배포 버전&#x27;:&#x27;진행 상태&#x27;}&lt;/h2&gt;&lt;select class=&quot;ops-select&quot; data-status-filter aria-label=&quot;진척 상태 필터&quot;&gt;&lt;option value=&quot;all&quot;&gt;전체 상태&lt;/option&gt;${[&#x27;done&#x27;,&#x27;progress&#x27;,&#x27;pending&#x27;,&#x27;blocked&#x27;].map(s=&gt;`&lt;option value=&quot;${s}&quot; ${state.status===s?&#x27;selected&#x27;:&#x27;&#x27;}&gt;${statusMeta[s][0]}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-table-wrap&quot;&gt;&lt;table class=&quot;ops-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;LINE / SDWT&lt;/th&gt;&lt;th&gt;설비 / UNIT&lt;/th&gt;${sw?&#x27;&lt;th&gt;현재 버전&lt;/th&gt;&lt;th&gt;목표 버전&lt;/th&gt;&lt;th&gt;배포 결과&lt;/th&gt;&#x27;:&#x27;&lt;th&gt;기준 확인&lt;/th&gt;&lt;th&gt;설치&lt;/th&gt;&lt;th&gt;검증&lt;/th&gt;&#x27;}&lt;th&gt;상태&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${shown.map(e=&gt;{const s=value(e),check=b=&gt;`&lt;td class=&quot;ops-check&quot; aria-label=&quot;${b?&#x27;완료&#x27;:&#x27;미완료&#x27;}&quot;&gt;${b?icon(&#x27;check&#x27;):&#x27;—&#x27;}&lt;/td&gt;`;return `&lt;tr&gt;&lt;td&gt;${e.line}&lt;small&gt;${e.sdwt}&lt;/small&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;${e.eqp}&lt;/strong&gt; · ${e.unit}&lt;small&gt;${e.sn}&lt;/small&gt;&lt;/td&gt;${sw?`&lt;td&gt;${s===&#x27;done&#x27;?&#x27;v2.4.1&#x27;:&#x27;v2.3.8&#x27;}&lt;/td&gt;&lt;td&gt;v2.4.1&lt;/td&gt;&lt;td&gt;${s===&#x27;done&#x27;?&#x27;검증 완료&#x27;:s===&#x27;progress&#x27;?&#x27;검증 중&#x27;:&#x27;배포 대기&#x27;}&lt;/td&gt;`:check([&#x27;done&#x27;,&#x27;progress&#x27;].includes(s))+check(s===&#x27;done&#x27;)+check(s===&#x27;done&#x27;)}&lt;td&gt;${badge(s)}&lt;/td&gt;&lt;td&gt;&lt;button type=&quot;button&quot; class=&quot;ops-icon-action&quot; aria-label=&quot;${e.eqp} 상세&quot; data-eqp=&quot;${e.sn}&quot;&gt;${icon(&#x27;chevron-right&#x27;)}&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;`;}).join(&#x27;&#x27;)||&#x27;&lt;tr&gt;&lt;td colspan=&quot;7&quot;&gt;&lt;div class=&quot;ops-empty&quot;&gt;조건에 맞는 설비가 없습니다.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;}&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;div class=&quot;ops-table-footer&quot;&gt;&lt;span&gt;총 ${filtered.length}대 · ${state.tablePage} / ${pageCount} 페이지&lt;/span&gt;&lt;div class=&quot;ops-pagination&quot;&gt;${Array.from({length:pageCount},(_,i)=&gt;`&lt;button type=&quot;button&quot; data-table-page=&quot;${i+1}&quot; class=&quot;${state.tablePage===i+1?&#x27;is-active&#x27;:&#x27;&#x27;}&quot;&gt;${i+1}&lt;/button&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;`;
+  }
+  function filteredWorks(){return works.filter(w=&gt;w.year===state.calYear&amp;&amp;w.month===state.calMonth&amp;&amp;w.status!==&#x27;rejected&#x27;&amp;&amp;eqFilter(w));}
+  function workTag(w){return w.status===&#x27;pending&#x27;?tag(&#x27;결재중&#x27;,&#x27;amber&#x27;):tag(w.type,w.type===&#x27;BM&#x27;?&#x27;red&#x27;:w.type===&#x27;개조&#x27;?&#x27;purple&#x27;:w.type===&#x27;비산정&#x27;?&#x27;&#x27;:&#x27;blue&#x27;);}
+  function agenda(list){return list.length?list.slice().sort((a,b)=&gt;a.day-b.day).map(w=&gt;`&lt;div class=&quot;ops-agenda-row&quot;&gt;&lt;div class=&quot;ops-agenda-date&quot;&gt;${w.month+1}월&lt;strong&gt;${w.day}&lt;/strong&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;ops-flex&quot;&gt;${workTag(w)}&lt;h3&gt;${esc(w.title)}&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;${esc(w.line)} · ${esc(w.eqp)} · ${w.time}–${w.end}&lt;/p&gt;&lt;p&gt;${esc(w.vendor)} · 요청 ${esc(w.requester)}&lt;/p&gt;&lt;/div&gt;${action(&#x27;상세 보기&#x27;,`data-work=&quot;${w.id}&quot;`)}&lt;/div&gt;`).join(&#x27;&#x27;):&#x27;&lt;div class=&quot;ops-empty&quot;&gt;등록된 작업이 없습니다.&lt;/div&gt;&#x27;;}
+  function renderCalendar(){
+    const list=filteredWorks(),year=state.calYear,month=state.calMonth,first=new Date(year,month,1).getDay(),days=new Date(year,month+1,0).getDate();
+    const weekMode=state.calView===&#x27;week&#x27;;
+    const calDays=Array.from({length:weekMode?7:Math.ceil((first+days)/7)*7},(_,i)=&gt;{const date=new Date(year,month,weekMode?state.weekStart+i:i-first+1),n=date.getDate(),actual=date.getMonth()===month,holiday=year===2026&amp;&amp;month===8&amp;&amp;actual?({24:&#x27;추석 연휴&#x27;,25:&#x27;추석&#x27;,26:&#x27;추석 연휴&#x27;}[n]||&#x27;&#x27;):&#x27;&#x27;;const dayWorks=actual?list.filter(w=&gt;w.day===n):[];return `&lt;div class=&quot;ops-day ${!actual?&#x27;ops-out-month&#x27;:&#x27;&#x27;} ${actual&amp;&amp;n===14&amp;&amp;month===8&amp;&amp;year===2026?&#x27;ops-today&#x27;:&#x27;&#x27;}&quot;&gt;&lt;div class=&quot;ops-spread&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;ops-date-button ${date.getDay()===0||holiday?&#x27;ops-sunday&#x27;:&#x27;&#x27;}&quot; data-date=&quot;${date.getFullYear()}-${date.getMonth()}-${n}&quot; aria-label=&quot;${date.getFullYear()}년 ${date.getMonth()+1}월 ${n}일 작업&quot;&gt;${n}&lt;/button&gt;&lt;span class=&quot;ops-holiday&quot;&gt;${holiday}&lt;/span&gt;&lt;/div&gt;${dayWorks.map(w=&gt;`&lt;button type=&quot;button&quot; data-work=&quot;${w.id}&quot; class=&quot;ops-calendar-event ${w.status===&#x27;pending&#x27;?&#x27;pending&#x27;:w.type===&#x27;BM&#x27;?&#x27;bm&#x27;:w.type===&#x27;개조&#x27;?&#x27;improvement&#x27;:w.type===&#x27;비산정&#x27;?&#x27;uncounted&#x27;:&#x27;&#x27;}&quot;&gt;&lt;span&gt;${w.status===&#x27;pending&#x27;?&#x27;(결재중) &#x27;:&#x27;&#x27;}${w.type} · ${esc(w.eqp)}&lt;/span&gt;${esc(w.line)} ${w.time}&lt;/button&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;`;}).join(&#x27;&#x27;);
+    return title(&#x27;작업 캘린더&#x27;,&#x27;작업 일정과 결재중인 변경 요청을 함께 확인합니다.&#x27;,action(icon(&#x27;plus&#x27;)+&#x27; 작업 등록&#x27;,&#x27;data-action=&quot;new-work&quot;&#x27;,&#x27;ops-action-primary&#x27;))+filters()+`
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-calendar-toolbar&quot;&gt;&lt;div class=&quot;ops-flex&quot;&gt;&lt;h2&gt;${year}년 ${month+1}월&lt;/h2&gt;&lt;button type=&quot;button&quot; data-cal-shift=&quot;-1&quot; class=&quot;ops-icon-action&quot; aria-label=&quot;이전 ${weekMode?&#x27;주&#x27;:&#x27;달&#x27;}&quot;&gt;${icon(&#x27;chevron-left&#x27;)}&lt;/button&gt;&lt;button type=&quot;button&quot; data-cal-shift=&quot;1&quot; class=&quot;ops-icon-action&quot; aria-label=&quot;다음 ${weekMode?&#x27;주&#x27;:&#x27;달&#x27;}&quot;&gt;${icon(&#x27;chevron-right&#x27;)}&lt;/button&gt;${action(&#x27;오늘&#x27;,&#x27;data-action=&quot;cal-today&quot;&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-tabs&quot; aria-label=&quot;캘린더 보기&quot;&gt;${[[&#x27;month&#x27;,&#x27;월&#x27;],[&#x27;week&#x27;,&#x27;주&#x27;],[&#x27;list&#x27;,&#x27;목록&#x27;]].map(([v,l])=&gt;`&lt;button type=&quot;button&quot; data-cal-view=&quot;${v}&quot; class=&quot;${state.calView===v?&#x27;is-active&#x27;:&#x27;&#x27;}&quot; aria-pressed=&quot;${state.calView===v}&quot;&gt;${l}&lt;/button&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;/div&gt;
+      ${state.calView===&#x27;list&#x27;?agenda(list):`&lt;div class=&quot;ops-month-view&quot;&gt;&lt;div class=&quot;ops-weekdays&quot;&gt;${[&#x27;일&#x27;,&#x27;월&#x27;,&#x27;화&#x27;,&#x27;수&#x27;,&#x27;목&#x27;,&#x27;금&#x27;,&#x27;토&#x27;].map((d,i)=&gt;`&lt;div class=&quot;${i===0?&#x27;ops-sunday&#x27;:&#x27;&#x27;}&quot;&gt;${d}&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-month-grid&quot;&gt;${calDays}&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-mobile-agenda&quot;&gt;${agenda(weekMode?list.filter(w=&gt;w.day&gt;=state.weekStart&amp;&amp;w.day&lt;state.weekStart+7):list)}&lt;/div&gt;`}
+      &lt;div class=&quot;ops-legend&quot;&gt;&lt;span&gt;&lt;i class=&quot;ops-dot&quot;&gt;&lt;/i&gt;PM&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;ops-dot red&quot;&gt;&lt;/i&gt;BM&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;ops-dot purple&quot;&gt;&lt;/i&gt;개조&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;ops-dot gray&quot;&gt;&lt;/i&gt;비산정&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;ops-dot amber&quot;&gt;&lt;/i&gt;결재중&lt;/span&gt;&lt;span&gt;공휴일 표시&lt;/span&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;div class=&quot;ops-notice&quot;&gt;${icon(&#x27;info&#x27;)}&lt;span&gt;결재중인 작업은 승인 전 일정입니다. 기존 작업의 변경 요청은 승인될 때까지 원래 일정을 유지합니다.&lt;/span&gt;&lt;/div&gt;
+      &lt;section class=&quot;ops-surface&quot; style=&quot;margin-top:18px&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;예정 작업&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;${list.length}건 · 모든 라인&lt;/span&gt;&lt;/div&gt;${agenda(list.filter(w=&gt;w.day&gt;=14).slice(0,3))}&lt;/section&gt;`;
+  }
+  function renderParts(){
+    const p=parts[state.qcode];
+    const search=`&lt;form class=&quot;ops-surface ops-qsearch&quot; data-form=&quot;qcode&quot;&gt;&lt;label for=&quot;ops-qcode&quot;&gt;Q-CODE&lt;/label&gt;&lt;input class=&quot;ops-input&quot; id=&quot;ops-qcode&quot; name=&quot;qcode&quot; value=&quot;${esc(state.qcode)}&quot; placeholder=&quot;Q-10234 또는 Q-20810&quot; required&gt;&lt;button class=&quot;ops-action ops-action-primary&quot; type=&quot;submit&quot;&gt;${icon(&#x27;search&#x27;)}조회&lt;/button&gt;&lt;span class=&quot;ops-note&quot;&gt;예시: Q-10234 / Q-20810&lt;/span&gt;&lt;/form&gt;`;
+    if(!p)return title(&#x27;부품 현황&#x27;,&#x27;부품 정보부터 재고·구매·청구 이력까지 한 화면에서 확인합니다.&#x27;)+search+&#x27;&lt;section class=&quot;ops-surface ops-empty&quot;&gt;일치하는 부품이 없습니다. 예시 Q-CODE를 입력해 주세요.&lt;/section&gt;&#x27;;
+    const total=p.stock.reduce((a,b)=&gt;a+b,0),max=Math.max(...p.order,...p.use)*1.15;
+    return title(&#x27;부품 현황&#x27;,&#x27;부품 정보부터 재고·구매·청구 이력까지 한 화면에서 확인합니다.&#x27;)+search+`
+      &lt;div class=&quot;ops-parts-grid&quot;&gt;&lt;div class=&quot;ops-stack&quot;&gt;&lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;부품 정보&lt;/h2&gt;${tag(&#x27;사용 중&#x27;,&#x27;green&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-part-summary&quot;&gt;&lt;span class=&quot;ops-note&quot;&gt;${state.qcode}&lt;/span&gt;&lt;h3 class=&quot;ops-part-name&quot;&gt;${p.name}&lt;/h3&gt;&lt;dl class=&quot;ops-detail-grid&quot;&gt;&lt;div&gt;&lt;dt&gt;규격 / 모델&lt;/dt&gt;&lt;dd&gt;${p.model}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;제조사&lt;/dt&gt;&lt;dd&gt;${p.maker}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;단위&lt;/dt&gt;&lt;dd&gt;${p.unit}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;적용 설비&lt;/dt&gt;&lt;dd&gt;DIFF / ETCH 공통&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;재고 현황&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;조회 14:20&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-stock-summary&quot;&gt;&lt;strong&gt;${total}&lt;/strong&gt;&lt;span&gt;EA · 총 가용 재고&lt;/span&gt;${tag(&#x27;안전 재고 이상&#x27;,&#x27;green&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-table-wrap&quot;&gt;&lt;table class=&quot;ops-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;보관 위치&lt;/th&gt;&lt;th&gt;가용&lt;/th&gt;&lt;th&gt;예약&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${p.stock.map((n,i)=&gt;`&lt;tr&gt;&lt;td&gt;LINE-${[&#x27;A&#x27;,&#x27;B&#x27;,&#x27;C&#x27;][i]} 자재실&lt;/td&gt;&lt;td&gt;${n} EA&lt;/td&gt;&lt;td&gt;${[4,2,0][i]} EA&lt;/td&gt;&lt;/tr&gt;`).join(&#x27;&#x27;)}&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;구매 현황&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;조회 14:20&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-table-wrap&quot;&gt;&lt;table class=&quot;ops-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;발주 번호 / 예정일&lt;/th&gt;&lt;th&gt;수량&lt;/th&gt;&lt;th&gt;상태&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;PO-260914-018&lt;small&gt;입고 예정 09.18&lt;/small&gt;&lt;/td&gt;&lt;td&gt;20 EA&lt;/td&gt;&lt;td&gt;${tag(&#x27;발주 완료&#x27;,&#x27;blue&#x27;)}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;PO-260908-006&lt;small&gt;입고 09.12&lt;/small&gt;&lt;/td&gt;&lt;td&gt;16 EA&lt;/td&gt;&lt;td&gt;${tag(&#x27;입고 완료&#x27;,&#x27;green&#x27;)}&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;청구 현황&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;조회 14:20&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-table-wrap&quot;&gt;&lt;table class=&quot;ops-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;청구 / 설비&lt;/th&gt;&lt;th&gt;수량&lt;/th&gt;&lt;th&gt;상태&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;09.14 · LINE-A&lt;small&gt;DF-001 · 정기 PM&lt;/small&gt;&lt;/td&gt;&lt;td&gt;4 EA&lt;/td&gt;&lt;td&gt;${tag(&#x27;출고 대기&#x27;,&#x27;amber&#x27;)}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;09.13 · LINE-B&lt;small&gt;ET-005 · 펌프 점검&lt;/small&gt;&lt;/td&gt;&lt;td&gt;2 EA&lt;/td&gt;&lt;td&gt;${tag(&#x27;출고 완료&#x27;,&#x27;green&#x27;)}&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/section&gt;&lt;/div&gt;
+      &lt;div class=&quot;ops-stack&quot;&gt;&lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;월별 발주량 · 사용량&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;2026년 3–8월&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart&quot; role=&quot;img&quot; aria-label=&quot;월별 발주량 ${p.order.join(&#x27;, &#x27;)} EA, 월별 사용량 ${p.use.join(&#x27;, &#x27;)} EA&quot;&gt;&lt;div class=&quot;ops-chart-legend&quot;&gt;&lt;span&gt;&lt;i class=&quot;ops-dot&quot;&gt;&lt;/i&gt;발주량&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;ops-dot gray&quot;&gt;&lt;/i&gt;사용량&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-unit&quot;&gt;수량 (EA)&lt;/div&gt;&lt;div class=&quot;ops-bars&quot;&gt;${p.order.map((n,i)=&gt;`&lt;div class=&quot;ops-month-bars&quot;&gt;&lt;div class=&quot;ops-bar&quot; style=&quot;height:${n/max*100}%&quot; data-tooltip=&quot;${i+3}월 발주량 ${n} EA&quot;&gt;&lt;b&gt;${n}&lt;/b&gt;&lt;/div&gt;&lt;div class=&quot;ops-bar used&quot; style=&quot;height:${p.use[i]/max*100}%&quot; data-tooltip=&quot;${i+3}월 사용량 ${p.use[i]} EA&quot;&gt;&lt;b&gt;${p.use[i]}&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-chart-months&quot;&gt;${p.order.map((_,i)=&gt;`&lt;span&gt;${i+3}월&lt;/span&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-chart-foot&quot;&gt;누적 이력 기준 · 사용량은 출고·사용 확정 내역으로 집계&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;관련 시스템&lt;/h2&gt;${icon(&#x27;external-link&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-external-links&quot;&gt;${[&#x27;구매 시스템&#x27;,&#x27;자재 시스템&#x27;,&#x27;설비 포털&#x27;].map(l=&gt;action(l+&#x27; &#x27;+icon(&#x27;arrow-up-right&#x27;),`data-external=&quot;${l}&quot;`)).join(&#x27;&#x27;)}&lt;/div&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;`;
+  }
+  function renderSop(){
+    const filtered=sops.filter(s=&gt;(state.sopWork===&#x27;all&#x27;||s.work===state.sopWork)&amp;&amp;`${s.name} ${s.desc}`.toLowerCase().includes(state.sopQuery.toLowerCase()));
+    return title(&#x27;작업 방법 SOP 모음&#x27;,&#x27;작업에 첨부된 문서를 모으고, 파일명과 작업 정보로 찾아봅니다.&#x27;,action(icon(&#x27;plus&#x27;)+&#x27; SOP 등록&#x27;,&#x27;data-action=&quot;new-sop&quot;&#x27;,&#x27;ops-action-primary&#x27;))+`
+      &lt;div class=&quot;ops-sop-search&quot;&gt;&lt;div class=&quot;ops-search-wrap&quot;&gt;${icon(&#x27;search&#x27;)}&lt;input class=&quot;ops-input&quot; data-sop-query value=&quot;${esc(state.sopQuery)}&quot; aria-label=&quot;SOP 파일명 검색&quot; placeholder=&quot;파일명으로 검색 · 예: DIFF, 필터, 안전커버&quot;&gt;&lt;/div&gt;&lt;select class=&quot;ops-select&quot; data-sop-work aria-label=&quot;SOP 작업 유형&quot;&gt;&lt;option value=&quot;all&quot;&gt;전체 작업 유형&lt;/option&gt;${[&#x27;PM&#x27;,&#x27;BM&#x27;,&#x27;개조&#x27;,&#x27;비산정&#x27;].map(w=&gt;`&lt;option ${state.sopWork===w?&#x27;selected&#x27;:&#x27;&#x27;}&gt;${w}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/div&gt;
+      &lt;div class=&quot;ops-spread&quot; style=&quot;margin-bottom:12px&quot;&gt;&lt;h2 style=&quot;font-size:14px&quot;&gt;내 라인에서 자주 사용하는 SOP&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;LINE-A&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;ops-sop-featured&quot;&gt;${sops.filter(s=&gt;s.recommended).map(s=&gt;`&lt;div class=&quot;ops-sop-tile&quot;&gt;&lt;div class=&quot;ops-doc-icon&quot;&gt;${icon(&#x27;file-text&#x27;)}&lt;/div&gt;&lt;div&gt;${tag(s.work,&#x27;blue&#x27;)}&lt;h3&gt;&lt;button type=&quot;button&quot; class=&quot;ops-link&quot; data-sop=&quot;${s.id}&quot;&gt;${s.name}&lt;/button&gt;&lt;/h3&gt;&lt;p&gt;${s.desc} · ${s.rev}&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;전체 SOP &lt;span class=&quot;ops-note&quot;&gt;${filtered.length}개&lt;/span&gt;&lt;/h2&gt;&lt;span class=&quot;ops-note&quot;&gt;최신 승인 버전 우선&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-table-wrap&quot;&gt;&lt;table class=&quot;ops-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;파일명 / 내용&lt;/th&gt;&lt;th&gt;LINE&lt;/th&gt;&lt;th&gt;작업&lt;/th&gt;&lt;th&gt;버전&lt;/th&gt;&lt;th&gt;등록 정보&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${filtered.map(s=&gt;`&lt;tr&gt;&lt;td class=&quot;ops-wrap-cell&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;ops-link&quot; data-sop=&quot;${s.id}&quot;&gt;${esc(s.name)}&lt;/button&gt;&lt;small&gt;${esc(s.desc)}&lt;/small&gt;&lt;/td&gt;&lt;td&gt;${s.line}&lt;/td&gt;&lt;td&gt;${tag(s.work,s.work===&#x27;개조&#x27;?&#x27;purple&#x27;:&#x27;blue&#x27;)}&lt;/td&gt;&lt;td&gt;${s.rev}&lt;/td&gt;&lt;td&gt;${s.date}&lt;small&gt;${s.owner}&lt;/small&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ops-icon-action&quot; type=&quot;button&quot; data-sop=&quot;${s.id}&quot; aria-label=&quot;${esc(s.name)} 열기&quot;&gt;${icon(s.name.endsWith(&#x27;.url&#x27;)?&#x27;external-link&#x27;:&#x27;arrow-up-right&#x27;)}&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;`).join(&#x27;&#x27;)||&#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot;&gt;&lt;div class=&quot;ops-empty&quot;&gt;검색 결과가 없습니다.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;}&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/section&gt;`;
+  }
+  function renderApprovals(){
+    const mine=state.approvalTab===&#x27;mine&#x27;;
+    const base=mine?state.myRequests:approvals.filter(a=&gt;a.line===&#x27;LINE-A&#x27;&amp;&amp;(a.kind===&#x27;work&#x27;||[&#x27;user&#x27;,&#x27;admin&#x27;].includes(a.role)));
+    const selected=base.filter(a=&gt;(mine|| (state.approvalTab===&#x27;done&#x27;?a.status!==&#x27;pending&#x27;:a.status===&#x27;pending&#x27;))&amp;&amp;(state.approvalType===&#x27;all&#x27;||a.kind===state.approvalType));
+    const todo=approvals.filter(a=&gt;a.status===&#x27;pending&#x27;&amp;&amp;a.line===&#x27;LINE-A&#x27;).length;
+    return title(&#x27;결재함&#x27;,&#x27;자기 라인의 작업과 user·admin 권한 신청을 검토합니다.&#x27;)+`
+      &lt;div class=&quot;ops-approval-toolbar&quot;&gt;&lt;div class=&quot;ops-tabs&quot; aria-label=&quot;결재함 보기&quot;&gt;${[[&#x27;todo&#x27;,`내 결재 대기 ${todo}`],[&#x27;mine&#x27;,&#x27;내 신청&#x27;],[&#x27;done&#x27;,&#x27;처리 완료&#x27;]].map(([v,l])=&gt;`&lt;button type=&quot;button&quot; data-approval-tab=&quot;${v}&quot; class=&quot;${state.approvalTab===v?&#x27;is-active&#x27;:&#x27;&#x27;}&quot;&gt;${l}&lt;/button&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;select class=&quot;ops-select&quot; data-approval-type aria-label=&quot;결재 종류&quot;&gt;&lt;option value=&quot;all&quot;&gt;전체 요청&lt;/option&gt;&lt;option value=&quot;work&quot; ${state.approvalType===&#x27;work&#x27;?&#x27;selected&#x27;:&#x27;&#x27;}&gt;작업 상태 변경&lt;/option&gt;&lt;option value=&quot;permission&quot; ${state.approvalType===&#x27;permission&#x27;?&#x27;selected&#x27;:&#x27;&#x27;}&gt;권한 신청&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+      &lt;section class=&quot;ops-surface&quot;&gt;${selected.map(a=&gt;`&lt;article class=&quot;ops-approval-row&quot;&gt;&lt;div&gt;&lt;div class=&quot;ops-flex&quot;&gt;${tag(a.kind===&#x27;work&#x27;?&#x27;작업 상태 변경&#x27;:&#x27;권한 신청&#x27;,a.kind===&#x27;work&#x27;?&#x27;blue&#x27;:&#x27;purple&#x27;)}${badge(a.status)}&lt;span class=&quot;ops-note&quot;&gt;${a.line} · ${a.sdwt}&lt;/span&gt;&lt;/div&gt;&lt;h3&gt;${esc(a.title)}&lt;/h3&gt;&lt;div class=&quot;ops-approval-meta&quot;&gt;&lt;span&gt;요청자 &lt;strong&gt;${esc(a.requester)}&lt;/strong&gt; · ${esc(a.loginid)}&lt;/span&gt;&lt;span&gt;신청 ${a.time}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-approval-footer&quot;&gt;${icon(&#x27;users-round&#x27;)}${a.status===&#x27;pending&#x27;?`결재 담당 · ${a.role===&#x27;master&#x27;?&#x27;master&#x27;:`${a.line} admin 담당자 / master`}`:`처리자 김민수 · ${a.processedAt||&#x27;2026.09.14 14:20&#x27;}`}&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-approval-actions&quot;&gt;${action(&#x27;상세&#x27;,`data-approval=&quot;${a.id}&quot;`)}${a.status===&#x27;pending&#x27;&amp;&amp;!mine?action(&#x27;승인&#x27;,`data-decide=&quot;approve&quot; data-id=&quot;${a.id}&quot;`,&#x27;ops-action-primary&#x27;):&#x27;&#x27;}&lt;/div&gt;&lt;/article&gt;`).join(&#x27;&#x27;)||&#x27;&lt;div class=&quot;ops-empty&quot;&gt;해당하는 결재 건이 없습니다.&lt;/div&gt;&#x27;}&lt;/section&gt;
+      &lt;div class=&quot;ops-notice&quot;&gt;${icon(&#x27;shield-check&#x27;)}&lt;span&gt;admin은 자기 라인의 user·admin 신청을 결재할 수 있습니다. master 권한 신청은 master가 결재합니다.&lt;/span&gt;&lt;/div&gt;`;
+  }
+  function renderPermission(){
+    return title(&#x27;권한 신청&#x27;,&#x27;설비 기준정보에서 소속을 선택하고 필요한 권한을 신청합니다.&#x27;)+`
+      &lt;div class=&quot;ops-permission-layout&quot;&gt;&lt;form class=&quot;ops-surface&quot; data-form=&quot;permission&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;소속 · 권한 신청&lt;/h2&gt;${tag(&#x27;현재 admin&#x27;,&#x27;blue&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-form-body&quot;&gt;&lt;div class=&quot;ops-form-grid&quot;&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-loginid&quot;&gt;Login ID&lt;/label&gt;&lt;input id=&quot;ops-loginid&quot; class=&quot;ops-input&quot; value=&quot;minsu.kim&quot; readonly&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-username&quot;&gt;이름&lt;/label&gt;&lt;input id=&quot;ops-username&quot; class=&quot;ops-input&quot; value=&quot;김민수&quot; readonly&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-dept&quot;&gt;부서&lt;/label&gt;&lt;input id=&quot;ops-dept&quot; class=&quot;ops-input&quot; value=&quot;설비기술팀&quot; readonly&gt;&lt;span class=&quot;ops-note&quot;&gt;인증 정보에서 자동 입력&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-request-line&quot;&gt;신청 LINE&lt;/label&gt;&lt;select id=&quot;ops-request-line&quot; class=&quot;ops-select&quot; name=&quot;line&quot; data-dependent-line required&gt;&lt;option value=&quot;&quot;&gt;LINE 선택&lt;/option&gt;${Object.keys(lines).map(l=&gt;`&lt;option&gt;${l}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-request-sdwt&quot;&gt;신청 SDWT&lt;/label&gt;&lt;select id=&quot;ops-request-sdwt&quot; class=&quot;ops-select&quot; name=&quot;sdwt&quot; data-dependent-sdwt required disabled&gt;&lt;option value=&quot;&quot;&gt;LINE을 먼저 선택&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-request-role&quot;&gt;신청 권한&lt;/label&gt;&lt;select id=&quot;ops-request-role&quot; class=&quot;ops-select&quot; name=&quot;role&quot; data-request-role&gt;&lt;option value=&quot;user&quot;&gt;user · 작업 요청 및 업무 등록&lt;/option&gt;&lt;option value=&quot;admin&quot;&gt;admin · 라인 관리 및 결재&lt;/option&gt;&lt;option value=&quot;master&quot;&gt;master · 전체 라인 총괄&lt;/option&gt;&lt;/select&gt;&lt;span class=&quot;ops-note&quot; data-permission-routing&gt;신청 LINE의 admin 또는 master가 검토합니다.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-request-reason&quot;&gt;신청 사유&lt;/label&gt;&lt;textarea id=&quot;ops-request-reason&quot; class=&quot;ops-textarea&quot; name=&quot;reason&quot; placeholder=&quot;담당 설비와 필요한 권한을 적어 주세요.&quot; required&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-form-footer&quot;&gt;&lt;span class=&quot;ops-note&quot;&gt;승인 후 소속과 권한이 적용됩니다.&lt;/span&gt;&lt;button type=&quot;submit&quot; class=&quot;ops-action ops-action-primary&quot;&gt;신청하기 ${icon(&#x27;arrow-right&#x27;)}&lt;/button&gt;&lt;/div&gt;&lt;/form&gt;
+      &lt;div class=&quot;ops-stack&quot;&gt;&lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;현재 내 소속&lt;/h2&gt;${icon(&#x27;user-round&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-form-body&quot;&gt;&lt;strong&gt;LINE-A · DIFF&lt;/strong&gt;&lt;p class=&quot;ops-subtitle&quot;&gt;김민수 · admin&lt;/p&gt;&lt;p class=&quot;ops-subtitle&quot;&gt;다른 라인의 정보도 조회할 수 있습니다.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;권한별 업무 범위&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;ops-role-list&quot;&gt;&lt;div class=&quot;ops-role-row&quot;&gt;&lt;strong&gt;guest&lt;/strong&gt;&lt;div&gt;업무 정보 조회&lt;p&gt;최초 로그인 권한 · 자신의 권한 신청 가능&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-role-row&quot;&gt;&lt;strong&gt;user&lt;/strong&gt;&lt;div&gt;업무 등록 · 변경 요청&lt;p&gt;자기 라인의 보호된 상태 변경은 결재 필요&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-role-row&quot;&gt;&lt;strong&gt;admin&lt;/strong&gt;&lt;div&gt;자기 라인 관리 · 결재&lt;p&gt;상태 직접 변경, user·admin 신청 결재&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-role-row&quot;&gt;&lt;strong&gt;master&lt;/strong&gt;&lt;div&gt;전체 라인 총괄&lt;p&gt;모든 결재 · 권한 부여 및 관리&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;ops-surface&quot;&gt;&lt;div class=&quot;ops-section-head&quot;&gt;&lt;h2&gt;내 신청 내역&lt;/h2&gt;${action(&#x27;보기&#x27;,&#x27;data-action=&quot;my-requests&quot;&#x27;)}&lt;/div&gt;&lt;div class=&quot;ops-form-body&quot;&gt;&lt;span class=&quot;ops-note&quot;&gt;${state.myRequests.length?`${state.myRequests.length}건 신청됨`:&#x27;아직 신청한 내역이 없습니다.&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;`;
+  }
+  function renderMessages(){return messages.map(m=&gt;m.system?`&lt;div class=&quot;ops-system-message&quot;&gt;&lt;span&gt;업무 활동 · ${m.time}&lt;/span&gt;&lt;strong&gt;${esc(m.title)}&lt;/strong&gt;${esc(m.text)}&lt;br&gt;&lt;button type=&quot;button&quot; data-jump=&quot;${m.page}&quot; class=&quot;ops-link&quot;&gt;관련 내용 보기 →&lt;/button&gt;&lt;/div&gt;`:`&lt;div class=&quot;ops-message ${m.mine?&#x27;mine&#x27;:&#x27;&#x27;}&quot;&gt;${m.mine?&#x27;&#x27;:`&lt;span class=&quot;ops-avatar&quot;&gt;${esc(m.who.slice(1,2))}&lt;/span&gt;`}&lt;div class=&quot;ops-message-content&quot;&gt;&lt;div class=&quot;ops-message-head&quot;&gt;&lt;strong&gt;${esc(m.who)}&lt;/strong&gt;&lt;span&gt;${m.mine?&#x27;나&#x27;:m.line} · ${m.time}${m.edited?&#x27; · 수정됨&#x27;:&#x27;&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-bubble&quot;&gt;${esc(m.text)}&lt;/div&gt;${m.mine?`&lt;div class=&quot;ops-message-actions&quot;&gt;&lt;button type=&quot;button&quot; data-edit-message=&quot;${m.id}&quot;&gt;수정&lt;/button&gt;&lt;button type=&quot;button&quot; data-delete-message=&quot;${m.id}&quot;&gt;삭제&lt;/button&gt;&lt;/div&gt;`:&#x27;&#x27;}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;);}
+  function renderAi(){return `&lt;div class=&quot;ops-ai-intro&quot;&gt;${icon(&#x27;sparkles&#x27;)}&lt;h3&gt;업무 기록에서 답을 찾습니다&lt;/h3&gt;&lt;p&gt;횡전개 현황과 작업 이력, SOP를 근거와 함께 확인하세요.&lt;/p&gt;&lt;div class=&quot;ops-suggestions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;ops-suggestion&quot; data-ai-question=&quot;A라인 미완료 설비를 알려줘&quot;&gt;A라인 미완료 설비를 알려줘 ${icon(&#x27;arrow-up-right&#x27;)}&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;ops-suggestion&quot; data-ai-question=&quot;필터 교체 SOP를 찾아줘&quot;&gt;필터 교체 SOP를 찾아줘 ${icon(&#x27;arrow-up-right&#x27;)}&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;${aiMessages.map(m=&gt;`&lt;div class=&quot;ops-message ${m.mine?&#x27;mine&#x27;:&#x27;&#x27;}&quot;&gt;&lt;div class=&quot;ops-message-content&quot;&gt;&lt;div class=&quot;ops-message-head&quot;&gt;&lt;strong&gt;${m.mine?&#x27;김민수&#x27;:&#x27;업무 AI&#x27;}&lt;/strong&gt;&lt;span&gt;${m.mine?&#x27;나&#x27;:&#x27;답변 예시&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-bubble&quot;&gt;${esc(m.text)}&lt;/div&gt;${m.page?`&lt;div class=&quot;ops-citations&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;ops-citation&quot; data-jump=&quot;${m.page}&quot;&gt;${icon(&#x27;link-2&#x27;)} ${m.source}&lt;/button&gt;&lt;/div&gt;`:&#x27;&#x27;}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;)}`;}
+  function renderDock(scroll=true){
+    dock.hidden=!state.dock;if(!state.dock){dock.innerHTML=&#x27;&#x27;;updateChrome();return;}
+    const chat=state.dock===&#x27;chat&#x27;;if(chat)state.chatUnread=0;
+    dock.innerHTML=`&lt;div class=&quot;ops-dock-header&quot;&gt;&lt;div class=&quot;ops-tabs&quot;&gt;&lt;button type=&quot;button&quot; data-dock-tab=&quot;chat&quot; class=&quot;${chat?&#x27;is-active&#x27;:&#x27;&#x27;}&quot;&gt;업무 채팅&lt;/button&gt;&lt;button type=&quot;button&quot; data-dock-tab=&quot;ai&quot; class=&quot;${!chat?&#x27;is-active&#x27;:&#x27;&#x27;}&quot;&gt;업무 AI&lt;/button&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;ops-icon-action&quot; data-action=&quot;close-dock&quot; aria-label=&quot;대화 패널 닫기&quot;&gt;${icon(&#x27;x&#x27;)}&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;ops-dock-info&quot;&gt;&lt;span&gt;${chat?&#x27;전체 라인 · 공용 대화방&#x27;:&#x27;나만 보는 AI 대화&#x27;}&lt;/span&gt;&lt;span&gt;${chat?&#x27;대화·업무 활동&#x27;:&#x27;예시 응답&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-chat-body&quot; id=&quot;ops-chat-scroll&quot; aria-label=&quot;${chat?&#x27;채팅 기록&#x27;:&#x27;AI 대화 기록&#x27;}&quot;&gt;&lt;div class=&quot;ops-chat-day&quot;&gt;2026년 9월 14일 월요일&lt;/div&gt;${chat?renderMessages():renderAi()}&lt;/div&gt;&lt;form class=&quot;ops-chat-compose&quot; data-form=&quot;${chat?&#x27;chat&#x27;:&#x27;ai&#x27;}&quot;&gt;&lt;label class=&quot;ops-note&quot; for=&quot;ops-message-input&quot;&gt;${chat?&#x27;새 메시지&#x27;:&#x27;질문&#x27;}&lt;/label&gt;&lt;textarea id=&quot;ops-message-input&quot; name=&quot;message&quot; aria-label=&quot;${chat?&#x27;메시지 입력&#x27;:&#x27;AI 질문 입력&#x27;}&quot; placeholder=&quot;${chat?&#x27;함께 확인할 내용을 입력하세요.&#x27;:&#x27;업무 데이터에 대해 물어보세요.&#x27;}&quot; required&gt;&lt;/textarea&gt;&lt;div class=&quot;ops-spread&quot;&gt;&lt;span class=&quot;ops-note&quot;&gt;${chat?&#x27;Enter 전송 · Shift+Enter 줄바꿈&#x27;:&#x27;업무 기록 · SOP 기반&#x27;}&lt;/span&gt;&lt;button class=&quot;ops-action ops-action-primary&quot; type=&quot;submit&quot; aria-label=&quot;${chat?&#x27;메시지 보내기&#x27;:&#x27;질문 보내기&#x27;}&quot;&gt;${icon(&#x27;arrow-up&#x27;)}&lt;/button&gt;&lt;/div&gt;&lt;/form&gt;`;
+    updateChrome();paintIcons();if(scroll)requestAnimationFrame(()=&gt;{const el=dock.querySelector(&#x27;#ops-chat-scroll&#x27;);if(el)el.scrollTop=el.scrollHeight;});
+  }
+  function openDialog(label,body,footer=&#x27;&#x27;){
+    previousFocus=document.activeElement;modal.hidden=false;modal.innerHTML=`&lt;section class=&quot;ops-dialog&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;ops-dialog-title&quot;&gt;&lt;div class=&quot;ops-dialog-head&quot;&gt;&lt;h2 id=&quot;ops-dialog-title&quot;&gt;${label}&lt;/h2&gt;&lt;button type=&quot;button&quot; class=&quot;ops-icon-action&quot; data-action=&quot;close-modal&quot; aria-label=&quot;닫기&quot;&gt;${icon(&#x27;x&#x27;)}&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;ops-dialog-body&quot;&gt;${body}&lt;/div&gt;${footer?`&lt;div class=&quot;ops-dialog-footer&quot;&gt;${footer}&lt;/div&gt;`:&#x27;&#x27;}&lt;/section&gt;`;paintIcons();requestAnimationFrame(()=&gt;modal.querySelector(&#x27;input:not([readonly]),textarea,select,button&#x27;)?.focus());
+  }
+  function closeDialog(){modal.hidden=true;modal.innerHTML=&#x27;&#x27;;if(previousFocus?.isConnected)previousFocus.focus();}
+  function showWork(id){const w=works.find(x=&gt;x.id===id);if(!w)return;const s=sops.find(x=&gt;x.name===w.sop);openDialog(&#x27;작업 상세&#x27;,`&lt;div class=&quot;ops-flex&quot;&gt;${workTag(w)}${w.status!==&#x27;pending&#x27;?tag(&#x27;일정 확정&#x27;,&#x27;green&#x27;):&#x27;&#x27;}&lt;/div&gt;&lt;h3 style=&quot;margin-top:14px&quot;&gt;${esc(w.title)}&lt;/h3&gt;&lt;dl class=&quot;ops-detail-grid&quot;&gt;&lt;div&gt;&lt;dt&gt;설비&lt;/dt&gt;&lt;dd&gt;${w.line} · ${w.sdwt} · ${w.eqp}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;작업 일시&lt;/dt&gt;&lt;dd&gt;${w.year}.${w.month+1}.${w.day} ${w.time}–${w.end}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;업체 / 요청자&lt;/dt&gt;&lt;dd&gt;${w.vendor} / ${w.requester}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;모바일 연락처&lt;/dt&gt;&lt;dd&gt;010-0000-0000 · 예시&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;p style=&quot;margin:16px 0&quot;&gt;${esc(w.detail)}&lt;/p&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label&gt;작업 SOP&lt;/label&gt;&lt;button type=&quot;button&quot; class=&quot;ops-file-chip&quot; ${s?`data-sop=&quot;${s.id}&quot;`:&#x27;data-action=&quot;project-file&quot;&#x27;}&gt;${icon(&#x27;paperclip&#x27;)}${esc(w.sop)}&lt;/button&gt;&lt;/div&gt;${w.status===&#x27;pending&#x27;?&#x27;&lt;div class=&quot;ops-notice&quot;&gt;LINE-A admin 또는 master의 결재를 기다리고 있습니다.&lt;/div&gt;&#x27;:&#x27;&#x27;}`,w.status===&#x27;pending&#x27;?action(&#x27;결재함에서 확인&#x27;,&#x27;data-action=&quot;goto-approval&quot;&#x27;,&#x27;ops-action-primary&#x27;):action(&#x27;닫기&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;));}
+  function showSop(id){const s=sops.find(x=&gt;x.id===id);if(!s)return;openDialog(&#x27;SOP 문서 미리보기&#x27;,`&lt;div class=&quot;ops-flex&quot;&gt;${tag(s.work,&#x27;blue&#x27;)}${tag(&#x27;승인 버전&#x27;,&#x27;green&#x27;)}&lt;span class=&quot;ops-note&quot;&gt;${s.rev}&lt;/span&gt;&lt;/div&gt;&lt;h3 style=&quot;margin-top:14px;overflow-wrap:anywhere&quot;&gt;${esc(s.name)}&lt;/h3&gt;&lt;p&gt;${esc(s.desc)}&lt;/p&gt;&lt;dl class=&quot;ops-detail-grid&quot;&gt;&lt;div&gt;&lt;dt&gt;적용 LINE&lt;/dt&gt;&lt;dd&gt;${s.line}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;등록자 / 등록일&lt;/dt&gt;&lt;dd&gt;${s.owner} · ${s.date}&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;div class=&quot;ops-notice&quot;&gt;${icon(&#x27;file-text&#x27;)}실제 문서가 연결될 미리보기 영역입니다.&lt;/div&gt;`,action(&#x27;닫기&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;));}
+  function showApproval(id){const a=[...approvals,...state.myRequests].find(x=&gt;x.id===id);if(!a)return;const own=state.myRequests.includes(a);openDialog(&#x27;결재 요청 상세&#x27;,`&lt;div class=&quot;ops-flex&quot;&gt;${tag(a.kind===&#x27;work&#x27;?&#x27;작업 상태 변경&#x27;:&#x27;권한 신청&#x27;,&#x27;blue&#x27;)}${badge(a.status)}&lt;/div&gt;&lt;h3 style=&quot;margin-top:14px&quot;&gt;${esc(a.title)}&lt;/h3&gt;&lt;dl class=&quot;ops-detail-grid&quot;&gt;&lt;div&gt;&lt;dt&gt;요청자&lt;/dt&gt;&lt;dd&gt;${esc(a.requester)} · ${esc(a.loginid)}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;신청 시각&lt;/dt&gt;&lt;dd&gt;${a.time}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;신청 소속&lt;/dt&gt;&lt;dd&gt;${a.line} · ${a.sdwt}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;${a.kind===&#x27;permission&#x27;?&#x27;신청 권한&#x27;:&#x27;작업 예정일&#x27;}&lt;/dt&gt;&lt;dd&gt;${a.kind===&#x27;permission&#x27;?a.role:&#x27;2026.09.15 10:00–12:00&#x27;}&lt;/dd&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;dt&gt;결재 가능 담당자&lt;/dt&gt;&lt;dd&gt;${a.role===&#x27;master&#x27;?&#x27;master&#x27;:`${a.line} admin 담당자 / master`}&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;h3 style=&quot;margin-top:18px&quot;&gt;신청 사유&lt;/h3&gt;&lt;p&gt;${esc(a.reason)}&lt;/p&gt;${a.status===&#x27;pending&#x27;&amp;&amp;!own?&#x27;&lt;div class=&quot;ops-field&quot; style=&quot;margin-top:18px&quot;&gt;&lt;label for=&quot;ops-decision-reason&quot;&gt;결재 의견 &lt;span class=&quot;ops-note&quot;&gt;거부 시 필수&lt;/span&gt;&lt;/label&gt;&lt;textarea id=&quot;ops-decision-reason&quot; class=&quot;ops-textarea&quot; placeholder=&quot;검토 의견을 입력해 주세요.&quot;&gt;&lt;/textarea&gt;&lt;span id=&quot;ops-decision-error&quot; role=&quot;alert&quot; class=&quot;ops-note&quot;&gt;&lt;/span&gt;&lt;/div&gt;&#x27;:a.decisionReason?`&lt;p style=&quot;margin-top:14px&quot;&gt;결재 의견: ${esc(a.decisionReason)}&lt;/p&gt;`:&#x27;&#x27;}`,a.status===&#x27;pending&#x27;&amp;&amp;!own?action(&#x27;거부&#x27;,`data-decide=&quot;reject&quot; data-id=&quot;${a.id}&quot;`)+action(&#x27;승인&#x27;,`data-decide=&quot;approve&quot; data-id=&quot;${a.id}&quot;`,&#x27;ops-action-primary&#x27;):action(&#x27;닫기&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;));}
+  function decide(id,approved){const a=approvals.find(x=&gt;x.id===id);if(!a||a.status!==&#x27;pending&#x27;)return;const reason=modal.querySelector(&#x27;#ops-decision-reason&#x27;)?.value.trim()||&#x27;&#x27;;if(!approved&amp;&amp;!reason){const error=modal.querySelector(&#x27;#ops-decision-error&#x27;);if(error)error.textContent=&#x27;거부 사유를 입력해 주세요.&#x27;;modal.querySelector(&#x27;#ops-decision-reason&#x27;)?.focus();return;}a.status=approved?&#x27;approved&#x27;:&#x27;rejected&#x27;;a.decisionReason=reason;a.processedAt=&#x27;2026.09.14 14:20&#x27;;if(a.workId){const work=works.find(w=&gt;w.id===a.workId);work.status=a.status;const e=eqps.find(e=&gt;e.eqp===work.eqp);if(e)e.hw=approved?&#x27;progress&#x27;:&#x27;pending&#x27;;}messages.push({id:Date.now(),system:true,time:&#x27;14:20&#x27;,title:a.title,text:`김민수님이 ${approved?&#x27;승인&#x27;:&#x27;거부&#x27;}했습니다.${reason?&#x27; &#x27;+reason:&#x27;&#x27;}`,page:&#x27;approvals&#x27;});closeDialog();renderMain();if(state.dock===&#x27;chat&#x27;)renderDock();toast(`${a.requester}님의 요청을 ${approved?&#x27;승인&#x27;:&#x27;거부&#x27;}했습니다. · 시안 내 변경`);}
+  function workForm(day=15){openDialog(&#x27;작업 등록&#x27;,`&lt;form data-form=&quot;work&quot; id=&quot;ops-work-form&quot;&gt;&lt;div class=&quot;ops-form-grid&quot;&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-line&quot;&gt;LINE&lt;/label&gt;&lt;select id=&quot;ops-work-line&quot; class=&quot;ops-select&quot; name=&quot;line&quot; data-work-line&gt;${Object.keys(lines).map(l=&gt;`&lt;option ${state.line===l?&#x27;selected&#x27;:&#x27;&#x27;}&gt;${l}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-eqp&quot;&gt;설비 / SDWT&lt;/label&gt;&lt;select id=&quot;ops-work-eqp&quot; class=&quot;ops-select&quot; name=&quot;sn&quot;&gt;${eqps.filter(e=&gt;e.line===(state.line===&#x27;all&#x27;?&#x27;LINE-A&#x27;:state.line)).map(e=&gt;`&lt;option value=&quot;${e.sn}&quot;&gt;${e.eqp} · ${e.sdwt} · ${e.unit}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-type&quot;&gt;작업 구분&lt;/label&gt;&lt;select id=&quot;ops-work-type&quot; class=&quot;ops-select&quot; name=&quot;type&quot; data-work-type&gt;&lt;option&gt;PM&lt;/option&gt;&lt;option&gt;BM&lt;/option&gt;&lt;option&gt;개조&lt;/option&gt;&lt;option&gt;비산정&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-date&quot;&gt;작업일&lt;/label&gt;&lt;input id=&quot;ops-work-date&quot; class=&quot;ops-input&quot; name=&quot;date&quot; type=&quot;date&quot; value=&quot;${state.calYear}-${String(state.calMonth+1).padStart(2,&#x27;0&#x27;)}-${String(day).padStart(2,&#x27;0&#x27;)}&quot; required&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-start&quot;&gt;시작 시각&lt;/label&gt;&lt;input id=&quot;ops-work-start&quot; class=&quot;ops-input&quot; name=&quot;start&quot; type=&quot;time&quot; value=&quot;09:00&quot; required&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-end&quot;&gt;종료 시각&lt;/label&gt;&lt;input id=&quot;ops-work-end&quot; class=&quot;ops-input&quot; name=&quot;end&quot; type=&quot;time&quot; value=&quot;11:00&quot; required&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-vendor&quot;&gt;업체&lt;/label&gt;&lt;input id=&quot;ops-work-vendor&quot; class=&quot;ops-input&quot; name=&quot;vendor&quot; placeholder=&quot;업체명&quot; required&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-work-contact&quot;&gt;모바일 연락처&lt;/label&gt;&lt;input id=&quot;ops-work-contact&quot; class=&quot;ops-input&quot; name=&quot;contact&quot; placeholder=&quot;010-0000-0000&quot; type=&quot;tel&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-work-title&quot;&gt;작업 내용&lt;/label&gt;&lt;input id=&quot;ops-work-title&quot; class=&quot;ops-input&quot; name=&quot;title&quot; placeholder=&quot;작업명을 입력하세요.&quot; required&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-work-detail&quot;&gt;상세 내용&lt;/label&gt;&lt;textarea id=&quot;ops-work-detail&quot; class=&quot;ops-textarea&quot; name=&quot;detail&quot;&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-work-sop&quot;&gt;추천 SOP&lt;/label&gt;&lt;select id=&quot;ops-work-sop&quot; class=&quot;ops-select&quot; name=&quot;sop&quot;&gt;${sops.filter(s=&gt;s.work===&#x27;PM&#x27;).map(s=&gt;`&lt;option&gt;${s.name}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;/select&gt;&lt;span class=&quot;ops-note&quot;&gt;설비와 작업 유형을 기준으로 추천&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-notice&quot; data-work-rights&gt;자기 라인의 admin 권한으로 결재 없이 등록합니다.&lt;/div&gt;&lt;div role=&quot;alert&quot; class=&quot;ops-note&quot; data-work-error&gt;&lt;/div&gt;&lt;/form&gt;`,action(&#x27;취소&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;)+&#x27;&lt;button type=&quot;submit&quot; form=&quot;ops-work-form&quot; class=&quot;ops-action ops-action-primary&quot;&gt;등록하기&lt;/button&gt;&#x27;);updateWorkForm();}
+  function updateWorkForm(){const form=modal.querySelector(&#x27;#ops-work-form&#x27;);if(!form)return;const l=form.elements.line.value,t=form.elements.type.value;const candidates=sops.filter(s=&gt;s.work===t).sort((a,b)=&gt;(b.line===l?1:0)-(a.line===l?1:0));form.elements.sop.innerHTML=candidates.map(s=&gt;`&lt;option&gt;${s.name}&lt;/option&gt;`).join(&#x27;&#x27;);form.querySelector(&#x27;[data-work-rights]&#x27;).textContent=l===&#x27;LINE-A&#x27;?&#x27;자기 라인의 admin 권한으로 결재 없이 등록합니다.&#x27;:&#x27;다른 라인의 보호된 상태 변경은 해당 라인 권한이 필요합니다.&#x27;;}
+  function askAi(question){
+    aiMessages.push({mine:true,text:question});let response;
+    if(/SOP|필터|문서/i.test(question)){response={text:&#x27;필터 교체 작업에는 「DIFF_DF-001_PM_필터교체_v3.2.pdf」를 추천합니다. 최신 승인 버전이며, 필터 교체와 차압 점검 절차를 포함합니다.&#x27;,page:&#x27;sop&#x27;,source:&#x27;SOP · 필터 교체 v3.2&#x27;};}
+    else if(/미완료|진척|횡전개|설비/.test(question)){const pending=eqps.filter(e=&gt;e.line===&#x27;LINE-A&#x27;&amp;&amp;e.hw!==&#x27;done&#x27;);response={text:`A라인 안전 커버 횡전개 미완료 설비는 ${pending.length}대입니다.\n\n${pending.map(e=&gt;`• ${e.eqp} · ${statusMeta[e.hw][0]}`).join(&#x27;\n&#x27;)}\n\n전체 8대 중 ${8-pending.length}대가 완료되었습니다.`,page:&#x27;rollout&#x27;,source:&#x27;횡전개 · 안전 커버 표준화&#x27;};}
+    else{response={text:&#x27;이 화면에서는 답변 구성을 예시로 보여드립니다. “A라인 미완료 설비” 또는 “필터 교체 SOP”를 선택하면 관련 기록과 근거를 함께 확인할 수 있습니다.&#x27;};}
+    aiMessages.push(response);renderDock();
+  }
+  root.addEventListener(&#x27;click&#x27;,e=&gt;{
+    const b=e.target.closest(&#x27;button&#x27;);if(!b||!root.contains(b))return;
+    if(b.dataset.page){state.page=b.dataset.page;renderMain();return;}
+    if(b.dataset.jump){state.page=b.dataset.jump;closeDialog();renderMain();return;}
+    if(b.dataset.dock){state.dock=state.dock===b.dataset.dock?null:b.dataset.dock;renderDock();return;}
+    if(b.dataset.dockTab){state.dock=b.dataset.dockTab;renderDock();return;}
+    if(b.dataset.project){state.project=b.dataset.project;state.tablePage=1;renderMain();return;}
+    if(b.dataset.tablePage){state.tablePage=Number(b.dataset.tablePage);renderMain();return;}
+    if(b.dataset.eqp){const eq=eqps.find(x=&gt;x.sn===b.dataset.eqp);openDialog(&#x27;설비 진행 상세&#x27;,`&lt;div class=&quot;ops-flex&quot;&gt;${badge(state.project===&#x27;SW&#x27;?eq.sw:eq.hw)}${tag(state.project,&#x27;blue&#x27;)}&lt;/div&gt;&lt;h3 style=&quot;margin-top:16px&quot;&gt;${eq.eqp} · ${eq.unit}&lt;/h3&gt;&lt;p&gt;${eq.line} · ${eq.sdwt}&lt;br&gt;SN: ${eq.sn}&lt;/p&gt;&lt;dl class=&quot;ops-detail-grid&quot;&gt;&lt;div&gt;&lt;dt&gt;담당자&lt;/dt&gt;&lt;dd&gt;${eq.line===&#x27;LINE-A&#x27;?&#x27;김민수&#x27;:eq.line===&#x27;LINE-B&#x27;?&#x27;이서연&#x27;:&#x27;정지훈&#x27;}&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;완료 목표일&lt;/dt&gt;&lt;dd&gt;2026.09.30&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;div class=&quot;ops-notice&quot;&gt;${state.project===&#x27;SW&#x27;?&#x27;배포 버전과 검증 결과를 설비 단위로 기록합니다.&#x27;:&#x27;기준 확인 → 설치 → 검증 순서로 진척을 기록합니다.&#x27;}&lt;/div&gt;`,action(&#x27;닫기&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;));return;}
+    if(b.dataset.calView){state.calView=b.dataset.calView;renderMain();return;}
+    if(b.dataset.calShift){const delta=Number(b.dataset.calShift);if(state.calView===&#x27;week&#x27;){const date=new Date(state.calYear,state.calMonth,state.weekStart+delta*7);state.calYear=date.getFullYear();state.calMonth=date.getMonth();state.weekStart=date.getDate();}else{const date=new Date(state.calYear,state.calMonth+delta,1);state.calYear=date.getFullYear();state.calMonth=date.getMonth();state.weekStart=1;}renderMain();return;}
+    if(b.dataset.date){const [y,m,d]=b.dataset.date.split(&#x27;-&#x27;).map(Number);openDialog(`${y}년 ${m+1}월 ${d}일 작업`,agenda(works.filter(w=&gt;w.year===y&amp;&amp;w.month===m&amp;&amp;w.day===d&amp;&amp;w.status!==&#x27;rejected&#x27;&amp;&amp;eqFilter(w))),action(&#x27;닫기&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;));return;}
+    if(b.dataset.work){showWork(Number(b.dataset.work));return;}
+    if(b.dataset.sop){showSop(Number(b.dataset.sop));return;}
+    if(b.dataset.approvalTab){state.approvalTab=b.dataset.approvalTab;renderMain();return;}
+    if(b.dataset.approval){showApproval(Number(b.dataset.approval));return;}
+    if(b.dataset.decide){if(b.dataset.decide===&#x27;approve&#x27;&amp;&amp;modal.hidden){showApproval(Number(b.dataset.id));return;}decide(Number(b.dataset.id),b.dataset.decide===&#x27;approve&#x27;);return;}
+    if(b.dataset.external){openDialog(b.dataset.external,`&lt;p&gt;${b.dataset.external}의 부품 상세 화면으로 연결되는 자리입니다.&lt;/p&gt;&lt;div class=&quot;ops-notice&quot;&gt;선택한 부품: ${esc(state.qcode)}&lt;/div&gt;`,action(&#x27;확인&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;));return;}
+    if(b.dataset.aiQuestion){askAi(b.dataset.aiQuestion);return;}
+    if(b.dataset.editMessage){const msg=messages.find(m=&gt;m.id===Number(b.dataset.editMessage));openDialog(&#x27;메시지 수정&#x27;,`&lt;form id=&quot;ops-edit-message-form&quot; data-form=&quot;edit-message&quot; data-id=&quot;${msg.id}&quot;&gt;&lt;label class=&quot;ops-field&quot;&gt;메시지&lt;textarea class=&quot;ops-textarea&quot; name=&quot;message&quot; required&gt;${esc(msg.text)}&lt;/textarea&gt;&lt;/label&gt;&lt;/form&gt;`,action(&#x27;취소&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;)+&#x27;&lt;button type=&quot;submit&quot; form=&quot;ops-edit-message-form&quot; class=&quot;ops-action ops-action-primary&quot;&gt;저장&lt;/button&gt;&#x27;);return;}
+    if(b.dataset.deleteMessage){const index=messages.findIndex(m=&gt;m.id===Number(b.dataset.deleteMessage)&amp;&amp;m.mine);if(index&gt;=0){messages.splice(index,1);renderDock();toast(&#x27;메시지를 삭제했습니다. · 시안 내 변경&#x27;);}return;}
+    const act=b.dataset.action;
+    if(act===&#x27;close-modal&#x27;){closeDialog();return;}
+    if(act===&#x27;close-dock&#x27;){state.dock=null;renderDock();return;}
+    if(act===&#x27;new-work&#x27;){workForm();return;}
+    if(act===&#x27;cal-today&#x27;){state.calYear=2026;state.calMonth=8;state.weekStart=13;renderMain();return;}
+    if(act===&#x27;goto-approval&#x27;){closeDialog();state.page=&#x27;approvals&#x27;;state.approvalTab=&#x27;todo&#x27;;renderMain();return;}
+    if(act===&#x27;my-requests&#x27;){state.page=&#x27;approvals&#x27;;state.approvalTab=&#x27;mine&#x27;;renderMain();return;}
+    if(act===&#x27;project-file&#x27;){openDialog(&#x27;횡전개 첨부 자료&#x27;,&#x27;&lt;p&gt;대표 사진, 설치 가이드, 체크리스트를 이 영역에서 미리 보거나 내려받는 구성입니다.&lt;/p&gt;&lt;div class=&quot;ops-notice&quot;&gt;현재 화면의 파일명과 자료는 시안용 예시입니다.&lt;/div&gt;&#x27;,action(&#x27;닫기&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;));return;}
+    if(act===&#x27;new-project&#x27;){openDialog(&#x27;횡전개 항목 구성&#x27;,`&lt;div class=&quot;ops-form-grid&quot;&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label&gt;항목명&lt;/label&gt;&lt;input class=&quot;ops-input&quot; placeholder=&quot;새 횡전개 항목명&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label&gt;카테고리&lt;/label&gt;&lt;select class=&quot;ops-select&quot;&gt;&lt;option&gt;HW&lt;/option&gt;&lt;option&gt;SW&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label&gt;입력 양식&lt;/label&gt;&lt;select class=&quot;ops-select&quot;&gt;&lt;option&gt;체크리스트형&lt;/option&gt;&lt;option&gt;버전 배포형&lt;/option&gt;&lt;option&gt;단계별 진행형&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label&gt;대시보드 구성&lt;/label&gt;&lt;select class=&quot;ops-select&quot;&gt;&lt;option&gt;라인 진척률 + 설비 체크리스트&lt;/option&gt;&lt;option&gt;버전 분포 + 배포 결과&lt;/option&gt;&lt;option&gt;단계별 진척 + 설비 목록&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-notice&quot;&gt;항목마다 입력 양식과 대시보드 구성을 선택하는 구조입니다.&lt;/div&gt;`,action(&#x27;구성 확인&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;,&#x27;ops-action-primary&#x27;));return;}
+    if(act===&#x27;new-sop&#x27;){openDialog(&#x27;SOP 등록&#x27;,`&lt;form id=&quot;ops-sop-form&quot; data-form=&quot;sop&quot;&gt;&lt;div class=&quot;ops-form-grid&quot;&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-new-sop-name&quot;&gt;문서명&lt;/label&gt;&lt;input id=&quot;ops-new-sop-name&quot; class=&quot;ops-input&quot; name=&quot;name&quot; placeholder=&quot;LINE_설비_작업_내용_v1.0.pdf&quot; required&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-new-sop-line&quot;&gt;LINE&lt;/label&gt;&lt;select id=&quot;ops-new-sop-line&quot; class=&quot;ops-select&quot; name=&quot;line&quot;&gt;${Object.keys(lines).map(l=&gt;`&lt;option&gt;${l}&lt;/option&gt;`).join(&#x27;&#x27;)}&lt;option&gt;공통&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field&quot;&gt;&lt;label for=&quot;ops-new-sop-work&quot;&gt;작업 유형&lt;/label&gt;&lt;select id=&quot;ops-new-sop-work&quot; class=&quot;ops-select&quot; name=&quot;work&quot;&gt;&lt;option&gt;PM&lt;/option&gt;&lt;option&gt;BM&lt;/option&gt;&lt;option&gt;개조&lt;/option&gt;&lt;option&gt;비산정&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-new-sop-url&quot;&gt;문서 URL&lt;/label&gt;&lt;input id=&quot;ops-new-sop-url&quot; class=&quot;ops-input&quot; type=&quot;url&quot; name=&quot;url&quot; placeholder=&quot;https://사내문서주소&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ops-field full&quot;&gt;&lt;label for=&quot;ops-new-sop-file&quot;&gt;파일 첨부&lt;/label&gt;&lt;input id=&quot;ops-new-sop-file&quot; class=&quot;ops-input&quot; type=&quot;file&quot; name=&quot;file&quot;&gt;&lt;span class=&quot;ops-note&quot;&gt;시안에서는 파일을 업로드하지 않습니다.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/form&gt;`,action(&#x27;취소&#x27;,&#x27;data-action=&quot;close-modal&quot;&#x27;)+&#x27;&lt;button type=&quot;submit&quot; form=&quot;ops-sop-form&quot; class=&quot;ops-action ops-action-primary&quot;&gt;목록에 추가&lt;/button&gt;&#x27;);}
+  });
+  root.addEventListener(&#x27;change&#x27;,e=&gt;{
+    const el=e.target;
+    if(el.dataset.filter){state[el.dataset.filter]=el.value;if(el.dataset.filter===&#x27;line&#x27;)state.sdwt=&#x27;all&#x27;;state.tablePage=1;renderMain();}
+    if(el.hasAttribute(&#x27;data-status-filter&#x27;)){state.status=el.value;state.tablePage=1;renderMain();}
+    if(el.hasAttribute(&#x27;data-approval-type&#x27;)){state.approvalType=el.value;renderMain();}
+    if(el.hasAttribute(&#x27;data-sop-work&#x27;)){state.sopWork=el.value;renderMain();}
+    if(el.hasAttribute(&#x27;data-dependent-line&#x27;)){const select=main.querySelector(&#x27;[data-dependent-sdwt]&#x27;);select.disabled=!el.value;select.innerHTML=el.value?lines[el.value].map(x=&gt;`&lt;option&gt;${x}&lt;/option&gt;`).join(&#x27;&#x27;):&#x27;&lt;option value=&quot;&quot;&gt;LINE을 먼저 선택&lt;/option&gt;&#x27;;}
+    if(el.hasAttribute(&#x27;data-request-role&#x27;)){main.querySelector(&#x27;[data-permission-routing]&#x27;).textContent=el.value===&#x27;master&#x27;?&#x27;master 권한 신청은 master만 결재할 수 있습니다.&#x27;:&#x27;신청 LINE의 admin 또는 master가 검토합니다.&#x27;;}
+    if(el.hasAttribute(&#x27;data-work-line&#x27;)){modal.querySelector(&#x27;[name=&quot;sn&quot;]&#x27;).innerHTML=eqps.filter(x=&gt;x.line===el.value).map(x=&gt;`&lt;option value=&quot;${x.sn}&quot;&gt;${x.eqp} · ${x.sdwt} · ${x.unit}&lt;/option&gt;`).join(&#x27;&#x27;);updateWorkForm();}
+    if(el.hasAttribute(&#x27;data-work-type&#x27;))updateWorkForm();
+  });
+  root.addEventListener(&#x27;input&#x27;,e=&gt;{
+    const el=e.target;
+    const restore=(selector,value)=&gt;{renderMain();const n=main.querySelector(selector);n.focus();n.setSelectionRange(value.length,value.length);};
+    if(el.hasAttribute(&#x27;data-eq-search&#x27;)){state.eq=el.value;state.tablePage=1;restore(&#x27;[data-eq-search]&#x27;,state.eq);}
+    if(el.hasAttribute(&#x27;data-sop-query&#x27;)){state.sopQuery=el.value;restore(&#x27;[data-sop-query]&#x27;,state.sopQuery);}
+  });
+  root.addEventListener(&#x27;submit&#x27;,e=&gt;{
+    const form=e.target;if(!form.dataset.form)return;e.preventDefault();const data=new FormData(form);
+    if(form.dataset.form===&#x27;qcode&#x27;){state.qcode=String(data.get(&#x27;qcode&#x27;)).trim().toUpperCase();renderMain();}
+    if(form.dataset.form===&#x27;chat&#x27;){const text=String(data.get(&#x27;message&#x27;)).trim();if(!text)return;messages.push({id:Date.now(),who:&#x27;김민수&#x27;,mine:true,time:&#x27;14:20&#x27;,text});renderDock();dock.querySelector(&#x27;textarea&#x27;)?.focus();}
+    if(form.dataset.form===&#x27;ai&#x27;){const text=String(data.get(&#x27;message&#x27;)).trim();if(text)askAi(text);}
+    if(form.dataset.form===&#x27;edit-message&#x27;){const msg=messages.find(m=&gt;m.id===Number(form.dataset.id)&amp;&amp;m.mine),text=String(data.get(&#x27;message&#x27;)).trim();if(!msg||!text)return;msg.text=text;msg.edited=true;closeDialog();renderDock();}
+    if(form.dataset.form===&#x27;permission&#x27;){const l=data.get(&#x27;line&#x27;),role=data.get(&#x27;role&#x27;);state.myRequests.unshift({id:Date.now(),kind:&#x27;permission&#x27;,line:l,sdwt:data.get(&#x27;sdwt&#x27;),requester:&#x27;김민수&#x27;,loginid:&#x27;minsu.kim&#x27;,role,title:`김민수 · ${role} 권한 신청`,reason:data.get(&#x27;reason&#x27;),time:&#x27;2026.09.14 14:20&#x27;,status:&#x27;pending&#x27;});state.page=&#x27;approvals&#x27;;state.approvalTab=&#x27;mine&#x27;;state.approvalType=&#x27;all&#x27;;renderMain();toast(`${l} ${role===&#x27;master&#x27;?&#x27;master&#x27;:&#x27;admin 담당자 / master&#x27;} 결재 대기로 표시했습니다. · 예시`);}
+    if(form.dataset.form===&#x27;work&#x27;){
+      const l=data.get(&#x27;line&#x27;);const err=form.querySelector(&#x27;[data-work-error]&#x27;);
+      if(l!==&#x27;LINE-A&#x27;){err.textContent=&#x27;다른 라인의 작업 등록은 해당 라인 권한이 필요합니다.&#x27;;return;}
+      if(data.get(&#x27;end&#x27;)&lt;=data.get(&#x27;start&#x27;)){err.textContent=&#x27;종료 시각은 시작 시각보다 뒤여야 합니다.&#x27;;return;}
+      const eq=eqps.find(x=&gt;x.sn===data.get(&#x27;sn&#x27;));const [y,m,d]=String(data.get(&#x27;date&#x27;)).split(&#x27;-&#x27;).map(Number);
+      works.push({id:Date.now(),year:y,month:m-1,day:d,time:data.get(&#x27;start&#x27;),end:data.get(&#x27;end&#x27;),type:data.get(&#x27;type&#x27;),line:l,sdwt:eq.sdwt,eqp:eq.eqp,title:data.get(&#x27;title&#x27;),status:&#x27;approved&#x27;,vendor:data.get(&#x27;vendor&#x27;),requester:&#x27;김민수&#x27;,detail:data.get(&#x27;detail&#x27;),sop:data.get(&#x27;sop&#x27;)});
+      messages.push({id:Date.now()+1,system:true,time:&#x27;14:20&#x27;,title:`${l} · ${eq.eqp} · ${data.get(&#x27;title&#x27;)}`,text:&#x27;김민수님이 작업을 등록했습니다.&#x27;,page:&#x27;calendar&#x27;});state.calYear=y;state.calMonth=m-1;closeDialog();renderMain();if(state.dock===&#x27;chat&#x27;)renderDock();toast(&#x27;작업을 캘린더에 추가했습니다. · 시안 내 변경&#x27;);
+    }
+    if(form.dataset.form===&#x27;sop&#x27;){sops.unshift({id:Date.now(),name:data.get(&#x27;name&#x27;),line:data.get(&#x27;line&#x27;),work:data.get(&#x27;work&#x27;),desc:&#x27;새로 등록한 SOP · 예시&#x27;,rev:&#x27;v1.0&#x27;,date:&#x27;2026.09.14&#x27;,owner:&#x27;김민수&#x27;});closeDialog();renderMain();toast(&#x27;SOP 목록에 예시 항목을 추가했습니다.&#x27;);}
+  });
+  root.addEventListener(&#x27;keydown&#x27;,e=&gt;{
+    if(e.key===&#x27;Escape&#x27;&amp;&amp;!modal.hidden){closeDialog();return;}
+    if(e.key===&#x27;Tab&#x27;&amp;&amp;!modal.hidden){const f=[...modal.querySelectorAll(&#x27;button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled])&#x27;)].filter(x=&gt;x.getClientRects().length);if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&amp;&amp;document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&amp;&amp;document.activeElement===last){e.preventDefault();first.focus();}}
+    if(e.key===&#x27;Enter&#x27;&amp;&amp;!e.shiftKey&amp;&amp;!e.isComposing&amp;&amp;e.target.id===&#x27;ops-message-input&#x27;){e.preventDefault();e.target.closest(&#x27;form&#x27;).requestSubmit();}
+  });
+  modal.addEventListener(&#x27;click&#x27;,e=&gt;{if(e.target===modal)closeDialog();});
+  renderMain();
+})();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerdown&quot;, handlePointer);
+    document.removeEventListener(&quot;pointercancel&quot;, handlePointer);
+    document.removeEventListener(&quot;click&quot;, handleTouchClick);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerdown&quot;, handlePointer);
+  document.addEventListener(&quot;pointercancel&quot;, handlePointer);
+  document.addEventListener(&quot;click&quot;, handleTouchClick);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-tabs&quot;&gt;
+(() =&gt; {
+  const selector = &#x27;.nav[role=&quot;tablist&quot;] [role=&quot;tab&quot;]&#x27;;
+  const disabled = &#x27;:disabled,[aria-disabled=&quot;true&quot;]&#x27;;
+  const selectTab = (selected) =&gt; {
+    const panelId = selected.getAttribute(&quot;aria-controls&quot;);
+    for (const tab of selected.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;)) {
+      const active = tab === selected;
+      tab.classList.toggle(&quot;active&quot;, active);
+      tab.setAttribute(&quot;aria-selected&quot;, String(active));
+      const id = tab.getAttribute(&quot;aria-controls&quot;);
+      const panel = id &amp;&amp; document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden &amp;&amp; selected.id) {
+          panel.setAttribute(&quot;aria-labelledby&quot;, selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) =&gt; {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === &quot;click&quot;) {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;),
+    ).filter((candidate) =&gt; !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === &quot;ArrowRight&quot; || event.key === &quot;ArrowDown&quot;) {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === &quot;ArrowLeft&quot; || event.key === &quot;ArrowUp&quot;) {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === &quot;Home&quot;) {
+      next = 0;
+    } else if (event.key === &quot;End&quot;) {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll(&#x27;.nav[role=&quot;tablist&quot;]&#x27;)) {
+    const selected =
+      list.querySelector(&#x27;[role=&quot;tab&quot;][aria-selected=&quot;true&quot;]&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;].active&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;]&#x27;);
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener(&quot;click&quot;, interact);
+  document.addEventListener(&quot;keydown&quot;, interact);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; {
+    document.removeEventListener(&quot;click&quot;, interact);
+    document.removeEventListener(&quot;keydown&quot;, interact);
+  }, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+<script>(() => {
+  const frame = document.getElementById("codex-visualization");
+  if (!(frame instanceof HTMLIFrameElement)) {
+    return;
+  }
+  let viewportHeight = globalThis.innerHeight;
+  const storageKey = `codex:visualization-widget-state-v2:${JSON.stringify([
+    globalThis.location.pathname,
+    globalThis.location.search,
+  ])}`;
+  const parseState = (serializedState) => {
+    if (
+      typeof serializedState !== "string" ||
+      new TextEncoder().encode(serializedState).length > 16 * 1024
+    ) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    /** @type {unknown} */
+    const state = JSON.parse(serializedState);
+    if (
+      state == null ||
+      typeof state !== "object" ||
+      Array.isArray(state) ||
+      ("imageIds" in state &&
+        (!Array.isArray(state.imageIds) || state.imageIds.length > 0))
+    ) {
+      throw new TypeError("Widget state must be a JSON object");
+    }
+    const storedState = { modelContent: null, privateContent: null, ...state };
+    const canonicalState = JSON.stringify(
+      storedState,
+      (_key, /** @type {unknown} */ value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) {
+          throw new TypeError("Widget state must contain finite numbers");
+        }
+        return value;
+      },
+    );
+    if (new TextEncoder().encode(canonicalState).length > 16 * 1024) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    return storedState;
+  };
+  let storage = null;
+  let state = null;
+  try {
+    const localStorage = globalThis.localStorage;
+    const probeKey = `${storageKey}:probe`;
+    localStorage.setItem(probeKey, "1");
+    localStorage.removeItem(probeKey);
+    storage = localStorage;
+    const savedState = storage.getItem(storageKey);
+    if (savedState != null) {
+      try {
+        state = parseState(savedState);
+      } catch {
+        // Invalid saved state does not disable future writes.
+      }
+    }
+  } catch {
+    storage = null;
+  }
+  const initialGlobals = {
+    widgetState: state,
+    statePersistence: storage == null ? "none" : "local",
+  };
+
+  const channel = new MessageChannel();
+  channel.port1.addEventListener("message", (event) => {
+    const data = event.data;
+    if (typeof data !== "object" || data == null) {
+      return;
+    }
+    if (data.type === "widget-state-write") {
+      if (!Number.isSafeInteger(data.id) || data.id <= 0) {
+        return;
+      }
+      let ok = false;
+      try {
+        if (storage != null) {
+          const state = parseState(data.state);
+          storage.setItem(storageKey, JSON.stringify(state));
+          ok = true;
+        }
+      } catch {
+        // Storage denial, quota limits, and invalid state return a failed receipt.
+      }
+      channel.port1.postMessage({
+        type: "widget-state-result",
+        id: data.id,
+        ok,
+      });
+      return;
+    }
+    if (data.type === "height") {
+      const height = data.height;
+      if (
+        typeof height === "number" &&
+        Number.isFinite(height) &&
+        height >= 0 &&
+        height <= 10_000
+      ) {
+        frame.style.height = Math.ceil(height) + "px";
+      }
+      return;
+    }
+    if (data.type === "scroll-to") {
+      const top = data.top;
+      if (
+        typeof top === "number" &&
+        Number.isFinite(top) &&
+        top >= 0 &&
+        globalThis.navigator.userActivation?.isActive === true
+      ) {
+        globalThis.scrollTo({
+          top: Math.ceil(
+            globalThis.scrollY + frame.getBoundingClientRect().top + top,
+          ),
+        });
+      }
+      return;
+    }
+    if (data.type === "open-external") {
+      const rawHref = data.href;
+      if (typeof rawHref !== "string") {
+        return;
+      }
+      let href;
+      try {
+        const url = new URL(rawHref, document.baseURI);
+        if (url.protocol !== "https:") {
+          return;
+        }
+        href = url.href;
+      } catch {
+        return;
+      }
+      if (globalThis.navigator.userActivation?.isActive === true) {
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.rel = "noopener noreferrer";
+        anchor.target = "_blank";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+      return;
+    }
+    if (data.type === "follow-up") {
+      const prompt = data.prompt;
+      if (
+        typeof prompt !== "string" ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      const title = data.title;
+      globalThis.prompt(typeof title === "string" ? title : prompt, prompt);
+    }
+  });
+  channel.port1.start();
+  const srcdoc = frame.dataset.srcdoc;
+  if (srcdoc == null) {
+    return;
+  }
+  globalThis.addEventListener("resize", () => {
+    const height = Number.parseFloat(frame.style.height);
+    if (!Number.isFinite(height) || height <= viewportHeight) {
+      frame.style.removeProperty("height");
+    }
+    viewportHeight = globalThis.innerHeight;
+    channel.port1.postMessage({ type: "measure" });
+  });
+  frame.addEventListener(
+    "load",
+    () => {
+      frame.contentWindow?.postMessage(
+        { type: "codex-visualization-initialize" },
+        "*",
+        [channel.port2],
+      );
+    },
+    { once: true },
+  );
+  // Match the trusted bootstrap element, not the same text in an authored title.
+  frame.srcdoc = srcdoc.replace(
+    '<script type="application/json" id="codex-visualization-widget-state">__CODEX_VISUALIZATION_WIDGET_STATE__<\/script>',
+    () =>
+      '<script type="application/json" id="codex-visualization-widget-state">' +
+      JSON.stringify(initialGlobals).replaceAll("<", "\\u003c") +
+      "<\/script>",
+  );
+  delete frame.dataset.srcdoc;
+})();
+</script>
+</body>
+</html>
