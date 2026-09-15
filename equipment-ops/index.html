@@ -1240,6 +1240,17 @@ body{margin:0;padding:0}
 @media(max-width:1100px){#equipment-ops-preview .ops-home-columns{grid-template-columns:1fr}#equipment-ops-preview .ops-home-workcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){#equipment-ops-preview .ops-home-workcard{padding:13px;font-size:12px}#equipment-ops-preview .ops-home-workcard strong{font-size:22px}#equipment-ops-preview .ops-home-project .ops-spread{flex-wrap:wrap;gap:8px}#equipment-ops-preview .ops-issue-row{align-items:flex-start;flex-direction:column}#equipment-ops-preview .ops-home-line{flex-wrap:wrap}#equipment-ops-preview .ops-profile{gap:8px}}
 
+#equipment-ops-preview [data-issue-unit-field][hidden]{display:none!important}
+#equipment-ops-preview .ops-issue-scope-options{border:1px solid #dce5ef;border-radius:10px;padding:14px;margin:0;min-width:0}
+#equipment-ops-preview .ops-issue-scope-options legend{padding:0 6px;font-size:13px;font-weight:600}
+#equipment-ops-preview .ops-issue-scope-options>label{display:flex;align-items:flex-start;gap:10px;padding:10px;cursor:pointer;border-radius:8px}
+#equipment-ops-preview .ops-issue-scope-options>label:has(input:checked){background:#edf5ff;outline:1px solid #b3d3f4}
+#equipment-ops-preview .ops-issue-scope-options input{margin-top:3px;flex-shrink:0;accent-color:#337dc5}
+#equipment-ops-preview .ops-issue-scope-options strong,#equipment-ops-preview .ops-issue-scope-options small{display:block;font-size:13px;line-height:1.6}
+#equipment-ops-preview .ops-issue-scope-options small{font-size:12px;color:#65768e;font-weight:400}
+
+#equipment-ops-preview [data-issue-impact-help]{grid-column:1 / -1}
+
 </style>
 <script>
 (() => {
@@ -2154,7 +2165,8 @@ function unitsFor(sn){return unitRoster[sn]||[eqps.find(e=>e.sn===sn)?.unit].fil
 function issueTargetLabel(issue){return issue.scope==='equipment'?'설비 전체 · 공통부':issue.unit;}
 function issueAffectedUnits(issue){return issue.scope==='equipment'?unitsFor(issue.sn):[issue.unit];}
 function issuesForUnit(sn,unit){return equipmentIssues.filter(i=>i.sn===sn&&(i.scope==='equipment'||i.unit===unit));}
-function syncIssueScopeForm(){const scope=modal.querySelector('[data-issue-scope]')?.value,select=modal.querySelector('[data-issue-unit-select]'),help=modal.querySelector('[data-issue-impact-help]');if(select){select.disabled=scope==='equipment';select.required=scope!=='equipment';}if(help)help.textContent=scope==='equipment'?'공통부 이슈 1건으로 등록하며, 해당 설비의 모든 유닛을 사용 불가로 표시합니다.':'선택한 유닛에만 영향을 표시합니다.';}
+function syncIssueScopeForm(){const scope=modal.querySelector('[data-issue-scope]:checked')?.value,select=modal.querySelector('[data-issue-unit-select]'),field=modal.querySelector('[data-issue-unit-field]'),help=modal.querySelector('[data-issue-impact-help]');if(field)field.hidden=scope!=='unit';if(select){select.disabled=scope!=='unit';select.required=scope==='unit';}if(help)help.textContent=scope==='equipment'?'유닛을 선택하지 않아도 됩니다. 공통부 이슈 1건으로 등록하며, 해당 설비의 모든 유닛을 사용 불가로 표시합니다.':scope==='unit'?'아래에서 이슈가 발생한 유닛을 선택하세요.':'이슈가 설비 전체에 영향을 주는지, 특정 유닛에만 발생했는지 먼저 선택하세요.';}
+
 function isOpenIssue(issue){return issue.status!=='resolved';}
 function initOperations(){
   Object.assign(state,{page:'home',homeLine:state.role==='master'?'all':state.userLine,issueView:'matrix',issueStatus:'active',issueSeverity:'all',opsRead:{}});
@@ -2209,13 +2221,14 @@ function renderIssues(){
 }
 function showUnitIssues(sn,unit){const eq=eqps.find(e=>e.sn===sn);if(!eq||!unitsFor(sn).includes(unit))return;const issues=issuesForUnit(sn,unit);openDialog(`${esc(eq.eqp)} · ${esc(unit)} 이슈`, `<p>${esc(eq.line)} · ${esc(eq.sdwt)} · ${esc(sn)}</p>${issueCards(issues)}`,action('닫기','data-action="close-modal"')+(canWriteLine(eq.line)?action('이 유닛에 이슈 등록',`data-new-issue data-issue-sn="${sn}" data-issue-unit="${esc(unit)}"`,'ops-action-primary'):''));modal.querySelector('.ops-dialog')?.classList.add('ops-dialog-wide');}
 function showEquipmentIssues(sn){const eq=eqps.find(e=>e.sn===sn);if(!eq)return;openDialog(`${esc(eq.eqp)} · 공통부 이슈`,`<p>${esc(eq.line)} · ${esc(eq.sdwt)} · ${esc(sn)}</p><div class="ops-notice">공통부 이슈는 1건으로 관리하며, 미해결 상태에서는 등록된 모든 유닛에 사용 불가 영향을 표시합니다.</div>${issueCards(equipmentIssues.filter(i=>i.sn===sn&&i.scope==='equipment'))}`,action('닫기','data-action="close-modal"')+(canWriteLine(eq.line)?action('공통부 이슈 등록',`data-new-issue data-issue-sn="${sn}" data-new-issue-scope="equipment"`,'ops-action-primary'):''));modal.querySelector('.ops-dialog')?.classList.add('ops-dialog-wide');}
-function issueForm(sn='',unit='',scope='unit'){
+function issueForm(sn='',unit='',scope=''){
+  if(!scope&&unit)scope='unit';
   if(!canEditData())return;const choices=eqps.filter(e=>canWriteLine(e.line));let eq=choices.find(e=>e.sn===sn)||choices.find(e=>e.line===state.userLine)||choices[0];if(!eq)return;
-  openDialog('설비·유닛 이슈 등록',`<form id="ops-issue-form" data-form="issue-create"><div class="ops-form-grid"><label class="ops-field full">대상 설비<select class="ops-select" name="sn" data-issue-eqp>${choices.map(e=>`<option value="${e.sn}" ${e.sn===eq.sn?'selected':''}>${esc(e.line)} / ${esc(e.sdwt)} / ${esc(e.eqp)} / ${esc(e.sn)}</option>`).join('')}</select></label><label class="ops-field">영향 범위<select class="ops-select" name="scope" data-issue-scope><option value="unit" ${scope==='unit'?'selected':''}>특정 유닛</option><option value="equipment" ${scope==='equipment'?'selected':''}>설비 전체 · 공통부</option></select></label><label class="ops-field">유닛<select class="ops-select" name="unit" data-issue-unit-select>${unitsFor(eq.sn).map(u=>`<option value="${esc(u)}" ${u===unit?'selected':''}>${esc(u)}</option>`).join('')}</select></label><label class="ops-field">이슈 유형<select class="ops-select" name="type">${['파단','누유','알람','로봇 에러','동작 이상','기타'].map(t=>`<option>${t}</option>`).join('')}</select></label><label class="ops-field">중요도<select class="ops-select" name="severity">${Object.entries(issueSeverities()).map(([v,[l]])=>`<option value="${v}" ${v==='normal'?'selected':''}>${l}</option>`).join('')}</select></label><label class="ops-field">발생 시각<input class="ops-input" type="datetime-local" name="occurredAt" value="${opsNow()}" required></label><label class="ops-field full">현상 설명<textarea class="ops-textarea" name="description" rows="4" maxlength="10000" placeholder="발생 현상과 확인한 내용을 입력하세요." required></textarea></label><label class="ops-field full">사진·자료 첨부<input type="file" name="files" class="ops-input" multiple><span class="ops-note">파일당 20 MB · 현재 열린 시안에서만 유지</span></label></div><p class="ops-notice" data-issue-impact-help></p><div class="ops-notice">김민수 · ${esc(state.userLine)} · 등록 즉시 유닛 현황과 역할별 첫 화면에 반영됩니다.</div><p class="ops-form-error" data-issue-error role="alert"></p></form>`,action('취소','data-action="close-modal"')+'<button type="submit" form="ops-issue-form" class="ops-action ops-action-primary">이슈 등록</button>');syncIssueScopeForm();
+  openDialog('설비·유닛 이슈 등록',`<form id="ops-issue-form" data-form="issue-create"><div class="ops-form-grid"><label class="ops-field full">대상 설비<select class="ops-select" name="sn" data-issue-eqp>${choices.map(e=>`<option value="${e.sn}" ${e.sn===eq.sn?'selected':''}>${esc(e.line)} / ${esc(e.sdwt)} / ${esc(e.eqp)} / ${esc(e.sn)}</option>`).join('')}</select></label><fieldset class="ops-field full ops-issue-scope-options"><legend>이슈 영향 범위 · 필수 선택</legend><label><input type="radio" name="scope" value="equipment" data-issue-scope required ${scope==='equipment'?'checked':''}><span><strong>설비 전체 · 공통부</strong><small>로봇 에러 등 전체 유닛 사용 불가 · 유닛 선택 불필요</small></span></label><label><input type="radio" name="scope" value="unit" data-issue-scope required ${scope==='unit'?'checked':''}><span><strong>특정 유닛</strong><small>선택한 유닛에 발생한 이슈</small></span></label></fieldset><p class="ops-notice full" data-issue-impact-help></p><label class="ops-field full" data-issue-unit-field ${scope==='unit'?'':'hidden'}>대상 유닛<select class="ops-select" name="unit" data-issue-unit-select ${scope==='unit'?'required':'disabled'}><option value="">유닛을 선택하세요</option>${unitsFor(eq.sn).map(u=>`<option value="${esc(u)}" ${u===unit?'selected':''}>${esc(u)}</option>`).join('')}</select></label><label class="ops-field">이슈 유형<select class="ops-select" name="type">${['파단','누유','알람','로봇 에러','동작 이상','기타'].map(t=>`<option>${t}</option>`).join('')}</select></label><label class="ops-field">중요도<select class="ops-select" name="severity">${Object.entries(issueSeverities()).map(([v,[l]])=>`<option value="${v}" ${v==='normal'?'selected':''}>${l}</option>`).join('')}</select></label><label class="ops-field">발생 시각<input class="ops-input" type="datetime-local" name="occurredAt" value="${opsNow()}" required></label><label class="ops-field full">현상 설명<textarea class="ops-textarea" name="description" rows="4" maxlength="10000" placeholder="발생 현상과 확인한 내용을 입력하세요." required></textarea></label><label class="ops-field full">사진·자료 첨부<input type="file" name="files" class="ops-input" multiple><span class="ops-note">파일당 20 MB · 현재 열린 시안에서만 유지</span></label></div><div class="ops-notice">김민수 · ${esc(state.userLine)} · 등록 즉시 유닛 현황과 역할별 첫 화면에 반영됩니다.</div><p class="ops-form-error" data-issue-error role="alert"></p></form>`,action('취소','data-action="close-modal"')+'<button type="submit" form="ops-issue-form" class="ops-action ops-action-primary">이슈 등록</button>');syncIssueScopeForm();
 }
 function validLocalTime(value){return /^\d{4}-\d{2}-\d{2}T(?:[01]\d|2[0-3]):[0-5]\d$/.test(String(value))&&Number.isFinite(dayNumber(value.slice(0,10)));}
 function createIssueData(values,files=[]){const eq=eqps.find(e=>e.sn===values.sn),fail=error=>({ok:false,error});
-  const scope=values.scope||'unit';
+  const scope=values.scope??'unit';
   if(!eq||!canWriteLine(eq.line)||!['equipment','unit'].includes(scope)||scope==='unit'&&!unitsFor(eq.sn).includes(values.unit))return fail('해당 설비·유닛의 이슈 등록 권한을 확인해 주세요.');
   if(!['파단','누유','알람','로봇 에러','동작 이상','기타'].includes(values.type)||!issueSeverities()[values.severity])return fail('유형과 중요도를 확인해 주세요.');
   const description=String(values.description||'').trim();if(!description||description.length>10000||!validLocalTime(values.occurredAt))return fail('현상 설명과 발생 시각을 정확히 입력해 주세요.');
@@ -2305,7 +2318,7 @@ function openHomeTasks(kind){
   function switchDemoLine(line){if(!lines[line])return;state.userLine=line;state.homeLine=state.role==='master'?'all':line;Object.assign(state,{line:'all',sdwt:'all',eq:''});if(!modal.hidden)closeDialog();refreshOperations();}
   root.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b||!root.contains(b)||b.disabled)return;
-    if(b.hasAttribute('data-new-issue')){issueForm(b.dataset.issueSn||'',b.dataset.issueUnit||'',b.dataset.newIssueScope||'unit');return;}
+    if(b.hasAttribute('data-new-issue')){issueForm(b.dataset.issueSn||'',b.dataset.issueUnit||'',b.dataset.newIssueScope||(b.dataset.issueUnit?'unit':''));return;}
     if(b.dataset.equipmentIssues){showEquipmentIssues(b.dataset.equipmentIssues);return;}
     if(b.dataset.unitIssues){showUnitIssues(b.dataset.unitIssues,b.dataset.issueUnit);return;}
     if(b.dataset.issueDetail){showIssue(b.dataset.issueDetail);return;}
@@ -2328,7 +2341,7 @@ function openHomeTasks(kind){
     if(el.hasAttribute('data-issue-status')){state.issueStatus=el.value;state.issueTodayOnly=false;renderMain();return;}
     if(el.hasAttribute('data-issue-severity')){state.issueSeverity=el.value;renderMain();return;}
     if(el.hasAttribute('data-issue-scope')){syncIssueScopeForm();return;}
-    if(el.hasAttribute('data-issue-eqp')){const select=modal.querySelector('[data-issue-unit-select]');if(select)select.innerHTML=unitsFor(el.value).map(u=>`<option value="${esc(u)}">${esc(u)}</option>`).join('');return;}
+    if(el.hasAttribute('data-issue-eqp')){const select=modal.querySelector('[data-issue-unit-select]');if(select)select.innerHTML='<option value="">유닛을 선택하세요</option>'+unitsFor(el.value).map(u=>`<option value="${esc(u)}">${esc(u)}</option>`).join('');return;}
     if(el.hasAttribute('data-issue-update-status')){const input=modal.querySelector('[data-issue-completed-at]');if(input){input.disabled=el.value!=='resolved';input.required=el.value==='resolved';}return;}
   });
   root.addEventListener('submit',e=>{
